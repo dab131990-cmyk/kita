@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>בדיקת הרשמה למסע לכיתה א׳</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; background: #F4F7F2; }
+        .box { background: white; padding: 30px; border-radius: 10px; max-width: 400px; margin: 0 auto; border: 1px solid #ccc; }
+        input { width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; text-align: center; }
+        button { background: #5B8C3E; color: white; border: none; padding: 12px 20px; font-size: 16px; cursor: pointer; border-radius: 5px; width: 95%; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>בדיקת חיבור לבסיס הנתונים 🐿️</h2>
+        <p>מלאי פרטים כדי לראות אם זה נשמר ב-Vercel KV:</p>
+        <input type="text" id="name" placeholder="שם ההורה">
+        <input type="email" id="email" placeholder="אימייל ההורה">
+        <button onclick="testSend()">שלחי בדיקה 🚀</button>
+    </div>
 
+    <script>
+        async function testSend() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email })
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('יש!!! זה עבד! המידע נשמר ב-KV בהצלחה! 🎉');
+                } else {
+                    alert('השרת החזיר תשובה אבל משהו התפספס: ' + data.error);
+                }
+            } catch (error) {
+                alert('שגיאה בחיבור לשרת. ודאי שיצרת את קובץ api/register.js');
+            }
+        }
+    </script>
+</body>
+</html>
