@@ -657,11 +657,8 @@ function renderMap() {
     }
     
     btn.onclick = () => {
-      if(i <= currentDay) {
-        loadDay(i);
-      } else {
-        showToast(`🔒 תחנה זו תיפתח לאחר שתשלימו את יום ${currentDay}`);
-      }
+    btn.onclick = () => {
+      loadDay(i);
     };
     
     map.appendChild(btn);
