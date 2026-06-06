@@ -1426,6 +1426,31 @@ loadS();selectGender(S.gender||'boy');refreshPreview();
 if(S.childName){renderAv('home-avatar-mini',curOpts());goScreen('screen-home');}
 else goScreen('screen-onboard');
 initQAMode();
+  // הפונקציה המאובטחת החדשה ששולחת את הנתונים ל-KV
+async function doRegister() {
+  const parentName = document.getElementById('parent-name').value.trim();
+  const parentMail = document.getElementById('parent-mail').value.trim();
+  const childName = document.getElementById('child-name').value.trim();
+
+  if (!parentName || !parentMail || !childName) {
+    alert('נא למלא את כל שדות החובה');
+    return;
+  }
+
+  localStorage.setItem('parentName', parentName);
+  localStorage.setItem('parentMail', parentMail);
+  localStorage.setItem('childName', childName);
+
+  try {
+    fetch('/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: parentName, email: parentMail })
+    });
+  } catch (e) { console.error(e); }
+
+  goScreen('screen-avatar');
+}
 </script>
 </body>
 </html>
