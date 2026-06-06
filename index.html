@@ -1,1 +1,476 @@
-413b9f54e69bddbec22c4d73d7bb028639a562a9
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#5B8C3E">
+<title>המסע לכיתה א׳ עם צ׳יפ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#5B8C3E;--primary-light:#EAF3DE;
+  --acorn:#8B5E3C;--acorn-light:#F5EBE0;
+  --green:#27AE60;--green-light:#E8F8EF;
+  --purple:#7C4DBC;--purple-light:#EDE7F6;
+  --orange:#E67E22;--orange-light:#FEF0E0;
+  --teal:#16A085;--teal-light:#E0F5F1;
+  --blue:#2D6BE4;--blue-light:#D6E8FF;
+  --pink:#E84393;--pink-light:#FFE8F4;
+  --red:#E74C3C;--red-light:#FDEDEC;
+  --bg:#F4F7F2;--card:#fff;--text:#1A2E1A;--muted:#5a6b5a;
+  --radius:16px;--radius-sm:10px;
+}
+html,body{height:100%;font-family:'Segoe UI',Arial,sans-serif;direction:rtl;background:var(--bg);color:var(--text);overflow-x:hidden}
+.screen{display:none;flex-direction:column;min-height:100vh;padding-bottom:84px}
+.screen.active{display:flex}
+.top-bar{background:var(--primary);color:#fff;padding:16px 20px 12px;position:sticky;top:0;z-index:10}
+.top-bar h1{font-size:18px;font-weight:700}
+.top-bar .sub{font-size:13px;opacity:.8;margin-top:2px}
+.acorn-bar{display:flex;align-items:center;gap:6px;margin-top:8px}
+.acorn-count{background:var(--acorn);color:#fff;font-weight:700;font-size:14px;padding:4px 12px;border-radius:20px}
+.content{padding:20px;flex:1;display:flex;flex-direction:column;gap:16px}
+.card{background:var(--card);border-radius:var(--radius);padding:20px;border:1px solid #d4e4c8}
+.btn{border:none;border-radius:var(--radius-sm);padding:14px 20px;font-size:16px;font-weight:700;cursor:pointer;width:100%;font-family:inherit;transition:.15s}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-green{background:var(--green);color:#fff}
+input[type=text]{border:2px solid #c8dab8;border-radius:var(--radius-sm);padding:12px 16px;font-size:15px;font-family:inherit;direction:rtl;width:100%;background:#fff;color:var(--text)}
+input[type=text]:focus{outline:none;border-color:var(--primary)}
+.input-wrap{display:flex;flex-direction:column;gap:6px}
+.input-wrap label{font-size:13px;font-weight:700;color:var(--muted)}
+.gender-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gender-btn{border:2px solid #c8dab8;border-radius:var(--radius-sm);padding:16px 10px;font-size:28px;cursor:pointer;background:#fff;display:flex;flex-direction:column;align-items:center;gap:5px;transition:.15s;font-family:inherit;width:100%}
+.gender-btn span{font-size:13px;font-weight:700;color:var(--muted)}
+.gender-btn.selected{border-color:var(--primary);background:var(--primary-light)}
+.gender-btn.selected span{color:var(--primary)}
+.opt-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.opt-btn{border:2px solid #c8dab8;border-radius:var(--radius-sm);padding:10px 6px;font-size:11px;font-weight:700;cursor:pointer;background:#fff;text-align:center;transition:.15s;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:4px}
+.opt-btn .ob-icon{font-size:22px}
+.opt-btn.selected{border-color:var(--primary);background:var(--primary-light);color:var(--primary)}
+.avatar-wrap{display:flex;justify-content:center;padding:10px 0}
+/* day card */
+.day-card{border-radius:var(--radius);overflow:hidden;border:1px solid #d4e4c8}
+.day-header{padding:14px 16px;color:#fff}
+.day-num-text{font-size:20px;font-weight:800}
+.day-goal-text{font-size:13px;opacity:.9;margin-top:3px}
+.section-block{padding:14px 16px;border-bottom:1px solid #eef3ea}
+.section-block:last-child{border-bottom:none}
+.section-label{font-size:12px;font-weight:800;margin-bottom:8px;letter-spacing:.3px}
+.parent-box{background:var(--primary-light);border-radius:var(--radius-sm);padding:13px 14px;border-right:4px solid var(--primary)}
+.parent-box-label{font-size:11px;font-weight:800;color:var(--primary);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.parent-box-text{font-size:13px;line-height:1.65}
+.convo-bubble{background:var(--acorn-light);border-radius:var(--radius-sm);padding:12px 14px;border-right:4px solid var(--acorn);font-size:14px;line-height:1.65}
+.reward-bar{background:var(--acorn);padding:10px 16px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#fff}
+/* chip bubble */
+.chip-bubble{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px}
+.chip-say{background:#fff;border-radius:0 12px 12px 12px;padding:10px 12px;font-size:13px;line-height:1.6;flex:1;border:1px solid #c8b8e8}
+/* ACTIVITY BOX */
+.activity-box{border-radius:var(--radius-sm);overflow:hidden;border:1.5px solid #c8b8e8;margin-bottom:0}
+.activity-header{background:var(--purple);padding:10px 14px;color:#fff;font-size:13px;font-weight:800}
+.activity-inner{background:#F8F4FF;padding:16px}
+/* CHOICE activity */
+.choice-opts{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.choice-opt{border:2px solid #c8b8e8;border-radius:var(--radius-sm);padding:12px 14px;font-size:14px;cursor:pointer;background:#fff;text-align:right;font-family:inherit;transition:.15s;width:100%}
+.choice-opt:active{opacity:.85}
+.choice-opt.correct{border-color:var(--green);background:var(--green-light);color:#1a5c2a}
+.choice-opt.wrong{border-color:var(--red);background:var(--red-light);color:#7b1a1a}
+.feedback-box{margin-top:12px;border-radius:var(--radius-sm);padding:12px 14px;font-size:13px;line-height:1.6;display:none}
+.feedback-box.show{display:block}
+.feedback-box.correct{background:var(--green-light);border:1px solid var(--green);color:#1a5c2a}
+.feedback-box.wrong{background:var(--red-light);border:1px solid var(--red);color:#7b1a1a}
+/* DRAG/ORDER activity */
+.drag-area{display:flex;flex-direction:column;gap:8px}
+.drag-target-row{display:flex;flex-wrap:wrap;gap:8px;min-height:52px;border:2px dashed #c8b8e8;border-radius:var(--radius-sm);padding:8px;background:#fff;margin-bottom:10px}
+.drag-items{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.drag-item{border:2px solid #c8b8e8;border-radius:var(--radius-sm);padding:8px 12px;font-size:13px;font-weight:700;cursor:pointer;background:#fff;user-select:none;display:flex;align-items:center;gap:6px;transition:.15s}
+.drag-item:active{opacity:.7;transform:scale(.97)}
+.drag-item.placed{background:var(--primary-light);border-color:var(--primary);color:var(--primary)}
+.drag-item.correct-placed{background:var(--green-light);border-color:var(--green);color:#1a5c2a}
+.drag-item.wrong-placed{background:var(--red-light);border-color:var(--red);color:#7b1a1a}
+.drag-slot{border:2px dashed #c8b8e8;border-radius:var(--radius-sm);padding:8px 10px;min-width:60px;min-height:44px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);background:#fff;position:relative}
+.drag-slot.filled{border-style:solid;border-color:var(--primary);background:var(--primary-light)}
+.drag-slot.correct{border-color:var(--green);background:var(--green-light)}
+.drag-slot.wrong{border-color:var(--red);background:var(--red-light)}
+/* CHECKLIST activity */
+.check-items{display:flex;flex-direction:column;gap:8px}
+.check-item{display:flex;align-items:center;gap:12px;background:#fff;border:2px solid #c8b8e8;border-radius:var(--radius-sm);padding:12px;cursor:pointer;transition:.15s}
+.check-item.checked{background:var(--green-light);border-color:var(--green)}
+.check-box{width:26px;height:26px;border-radius:6px;border:2px solid #c8b8e8;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;background:#fff;transition:.15s}
+.check-item.checked .check-box{background:var(--green);border-color:var(--green);color:#fff}
+.check-label{font-size:14px;font-weight:600}
+.check-item.checked .check-label{text-decoration:line-through;opacity:.6}
+/* TEXT INPUT activity */
+.text-activity input{border:2px solid #c8b8e8;border-radius:var(--radius-sm);padding:12px;font-size:15px;width:100%;font-family:inherit;direction:rtl;margin-bottom:10px}
+.text-activity input:focus{outline:none;border-color:var(--purple)}
+.chip-response{display:none;background:#fff;border-radius:0 12px 12px 12px;padding:10px 12px;font-size:13px;line-height:1.6;border:1px solid #c8b8e8;margin-top:8px}
+.chip-response.show{display:block}
+/* TRUE/FALSE activity */
+.tf-items{display:flex;flex-direction:column;gap:8px}
+.tf-item{border:2px solid #c8b8e8;border-radius:var(--radius-sm);padding:12px;background:#fff}
+.tf-stmt{font-size:13px;font-weight:600;margin-bottom:8px}
+.tf-btns{display:flex;gap:8px}
+.tf-btn{flex:1;border:2px solid #c8b8e8;border-radius:var(--radius-sm);padding:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;background:#fff;transition:.15s}
+.tf-btn.selected-correct{background:var(--green-light);border-color:var(--green);color:#1a5c2a}
+.tf-btn.selected-wrong{background:var(--red-light);border-color:var(--red);color:#7b1a1a}
+/* check button */
+.check-btn{background:var(--purple);color:#fff;border:none;border-radius:var(--radius-sm);padding:12px;font-size:15px;font-weight:700;cursor:pointer;width:100%;font-family:inherit;margin-top:12px;display:none}
+.check-btn.visible{display:block}
+/* complete */
+.complete-btn{background:var(--green);color:#fff;border:none;border-radius:var(--radius-sm);padding:15px;font-size:16px;font-weight:700;cursor:pointer;width:100%;font-family:inherit}
+/* nav */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #d4e4c8;display:flex;z-index:20;padding-bottom:env(safe-area-inset-bottom)}
+.nav-btn{flex:1;padding:10px 0;border:none;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:700;color:var(--muted);font-family:inherit}
+.nav-btn.active{color:var(--primary)}
+.nav-icon{font-size:20px}
+/* stickers */
+.sticker-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sticker{border-radius:var(--radius-sm);padding:12px 6px;text-align:center;border:2px solid #d4e4c8;background:var(--bg)}
+.sticker.earned{border-color:var(--acorn);background:var(--acorn-light)}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:700}
+/* trail */
+.streak-row{display:flex;align-items:center;gap:12px;background:var(--orange-light);border-radius:var(--radius-sm);padding:12px 16px}
+/* toast */
+.toast{position:fixed;top:76px;left:50%;transform:translateX(-50%);background:#1A2E1A;color:#fff;padding:11px 22px;border-radius:30px;font-size:14px;font-weight:700;z-index:200;opacity:0;transition:.3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1}
+.coin-anim{position:fixed;top:50%;left:50%;font-size:44px;font-weight:800;z-index:300;pointer-events:none;opacity:0;color:var(--acorn)}
+@keyframes coinPop{0%{opacity:1;transform:translate(-50%,-50%) scale(.5)}55%{opacity:1;transform:translate(-50%,-80%) scale(1.3)}100%{opacity:0;transform:translate(-50%,-130%) scale(1)}}
+.coin-anim.show{animation:coinPop .75s ease forwards}
+/* parent gate */
+.gate-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;display:flex;align-items:center;justify-content:center}
+.gate-box{background:#fff;border-radius:var(--radius);padding:24px;margin:20px;width:100%;max-width:340px}
+.gate-q{background:var(--primary-light);border-radius:var(--radius-sm);padding:12px;font-size:15px;font-weight:700;color:var(--primary);text-align:center;margin-bottom:12px}
+.gate-input{border:2px solid #c8dab8;border-radius:var(--radius-sm);padding:12px;font-size:16px;text-align:center;width:100%;font-family:inherit;margin-bottom:10px}
+.gate-input:focus{outline:none;border-color:var(--primary)}
+.gate-err{color:#c0392b;font-size:13px;text-align:center;margin-bottom:8px;display:none}
+</style>
+</head>
+<body>
+
+<div id="screen-onboard" class="screen active">
+  <div style="padding:40px 24px 24px;flex:1;display:flex;flex-direction:column;gap:24px">
+    <div style="font-size:80px;text-align:center;padding:8px 0">🐿️</div>
+    <div style="text-align:center">
+      <div style="font-size:30px;font-weight:800;color:var(--primary);margin-bottom:16px">המסע לכיתה א׳</div>
+      <div style="font-size:15px;color:var(--text);line-height:1.75;margin-bottom:12px">הצטרפו לצ׳יפ הסנאי החביב ל-30 ימי הכנה<br>ופיתוח תחושת המוכנות לכיתה א׳</div>
+      <div style="font-size:14px;color:var(--muted);line-height:1.75">משימות אינטראקטיביות יומיות שמקרבות ומחזקות את הקשר ביניכם.<br>התוכנית כוללת 30 ימי תרגול גמישים –<br>אתם בוחרים מתי וכמה, גם לא ברצף!</div>
+    </div>
+    <button class="btn btn-primary" onclick="goScreen('screen-register')" style="margin-top:auto;font-size:18px;padding:16px">בואו נתחיל! 🎉</button>
+    <div style="font-size:11px;color:var(--muted);text-align:center">פותח על ידי מרפאה בעיסוק – כל הזכויות שמורות</div>
+  </div>
+</div>
+
+<div id="screen-register" class="screen">
+  <div class="top-bar"><h1>🐿️ הרשמה</h1><div class="sub">כמה פרטים קטנים ומתחילים</div></div>
+  <div class="content">
+    <div class="input-wrap"><label>שם ההורה</label><input type="text" id="parent-name" placeholder="למשל: מיכל"/></div>
+    <div class="input-wrap"><label>שם הילד/ה</label><input type="text" id="child-name" placeholder="למשל: נועה"/></div>
+    <div class="input-wrap">
+      <label>הילד/ה שלי הוא/היא:</label>
+      <div class="gender-row">
+        <button class="gender-btn selected" id="btn-boy" onclick="selectGender('boy')">👦<span>בן</span></button>
+        <button class="gender-btn" id="btn-girl" onclick="selectGender('girl')">👧<span>בת</span></button>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="doRegister()">הבא: בניית הגיבור/ה שלך ✨</button>
+    <div style="font-size:11px;color:var(--muted);text-align:center">הפרטים נשמרים בבטחה במערכת</div>
+  </div>
+</div>
+
+<div id="screen-avatar" class="screen">
+  <div class="top-bar"><h1>🎨 הגיבור/ת שלך</h1><div class="sub" id="avatar-sub">בנה/י את הדמות שלך</div></div>
+  <div class="content">
+    <div class="avatar-wrap"><svg id="avatar-svg" width="130" height="155" viewBox="0 0 130 155" xmlns="http://www.w3.org/2000/svg"></svg></div>
+    <div class="card" style="padding:16px;display:flex;flex-direction:column;gap:14px">
+      <div class="input-wrap">
+        <label>🎨 צבע שיער</label>
+        <div class="opt-row">
+          <button class="opt-btn selected" data-group="hair" data-val="black" onclick="pickOpt(this,'hair')"><span class="ob-icon" style="color:#222">●</span>שחור</button>
+          <button class="opt-btn" data-group="hair" data-val="brown" onclick="pickOpt(this,'hair')"><span class="ob-icon" style="color:#8B4513">●</span>חום</button>
+          <button class="opt-btn" data-group="hair" data-val="blonde" onclick="pickOpt(this,'hair')"><span class="ob-icon" style="color:#FFD700">●</span>בלונד</button>
+          <button class="opt-btn" data-group="hair" data-val="red" onclick="pickOpt(this,'hair')"><span class="ob-icon" style="color:#CC4400">●</span>אדום</button>
+          <button class="opt-btn" data-group="hair" data-val="lightbrown" onclick="pickOpt(this,'hair')"><span class="ob-icon" style="color:#C8956C">●</span>ערמוני</button>
+          <button class="opt-btn" data-group="hair" data-val="white" onclick="pickOpt(this,'hair')"><span class="ob-icon" style="color:#BBB">●</span>לבן</button>
+        </div>
+      </div>
+      <div class="input-wrap">
+        <label>👁️ צבע עיניים</label>
+        <div class="opt-row">
+          <button class="opt-btn selected" data-group="eyes" data-val="brown" onclick="pickOpt(this,'eyes')"><span class="ob-icon" style="color:#6B3A2A">●</span>חום</button>
+          <button class="opt-btn" data-group="eyes" data-val="blue" onclick="pickOpt(this,'eyes')"><span class="ob-icon" style="color:#2980B9">●</span>כחול</button>
+          <button class="opt-btn" data-group="eyes" data-val="green" onclick="pickOpt(this,'eyes')"><span class="ob-icon" style="color:#27AE60">●</span>ירוק</button>
+          <button class="opt-btn" data-group="eyes" data-val="black" onclick="pickOpt(this,'eyes')"><span class="ob-icon" style="color:#111">●</span>שחור</button>
+          <button class="opt-btn" data-group="eyes" data-val="hazel" onclick="pickOpt(this,'eyes')"><span class="ob-icon" style="color:#8B7355">●</span>אגוז</button>
+          <button class="opt-btn" data-group="eyes" data-val="gray" onclick="pickOpt(this,'eyes')"><span class="ob-icon" style="color:#7F8C8D">●</span>אפור</button>
+        </div>
+      </div>
+      <div class="input-wrap">
+        <label>👕 צבע חולצה</label>
+        <div class="opt-row">
+          <button class="opt-btn selected" data-group="shirt" data-val="#3498DB" onclick="pickOpt(this,'shirt')"><span class="ob-icon" style="color:#3498DB">●</span>כחול</button>
+          <button class="opt-btn" data-group="shirt" data-val="#E74C3C" onclick="pickOpt(this,'shirt')"><span class="ob-icon" style="color:#E74C3C">●</span>אדום</button>
+          <button class="opt-btn" data-group="shirt" data-val="#27AE60" onclick="pickOpt(this,'shirt')"><span class="ob-icon" style="color:#27AE60">●</span>ירוק</button>
+          <button class="opt-btn" data-group="shirt" data-val="#F39C12" onclick="pickOpt(this,'shirt')"><span class="ob-icon" style="color:#F39C12">●</span>כתום</button>
+          <button class="opt-btn" data-group="shirt" data-val="#9B59B6" onclick="pickOpt(this,'shirt')"><span class="ob-icon" style="color:#9B59B6">●</span>סגול</button>
+          <button class="opt-btn" data-group="shirt" data-val="#E84393" onclick="pickOpt(this,'shirt')"><span class="ob-icon" style="color:#E84393">●</span>ורוד</button>
+        </div>
+      </div>
+      <div class="input-wrap">
+        <label>🐾 חיה אהובה</label>
+        <div class="opt-row">
+          <button class="opt-btn selected" data-group="animal" data-val="🐶" onclick="pickOpt(this,'animal')"><span class="ob-icon">🐶</span>כלב</button>
+          <button class="opt-btn" data-group="animal" data-val="🐱" onclick="pickOpt(this,'animal')"><span class="ob-icon">🐱</span>חתול</button>
+          <button class="opt-btn" data-group="animal" data-val="🐰" onclick="pickOpt(this,'animal')"><span class="ob-icon">🐰</span>ארנב</button>
+          <button class="opt-btn" data-group="animal" data-val="🦁" onclick="pickOpt(this,'animal')"><span class="ob-icon">🦁</span>אריה</button>
+          <button class="opt-btn" data-group="animal" data-val="🐬" onclick="pickOpt(this,'animal')"><span class="ob-icon">🐬</span>דולפין</button>
+          <button class="opt-btn" data-group="animal" data-val="🦋" onclick="pickOpt(this,'animal')"><span class="ob-icon">🦋</span>פרפר</button>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="finalizeAvatar()">🚀 בואו נתחיל את המסע!</button>
+  </div>
+</div>
+
+<div id="screen-home" class="screen">
+  <div class="top-bar">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div><h1 id="home-greeting">שלום!</h1><div class="sub" id="home-day-label">יום 1 מתוך 30</div></div>
+      <div onclick="goScreen('screen-achievements')" style="cursor:pointer">
+        <svg id="home-avatar-mini" width="50" height="58" viewBox="0 0 130 155" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+    </div>
+    <div class="acorn-bar">
+      <span>🌰</span><div class="acorn-count" id="acorns-display">0 בלוטים</div>
+      <div style="background:rgba(255,255,255,.2);border-radius:20px;padding:4px 10px;font-size:12px;color:#fff" id="streak-display">🔥 0 ימים</div>
+    </div>
+  </div>
+  <div class="content">
+    <div style="background:linear-gradient(135deg,#5B8C3E,#3d6128);border-radius:var(--radius);padding:18px;color:#fff">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+        <span style="font-size:36px">🐿️</span>
+        <div>
+          <div style="font-size:15px;font-weight:700" id="chip-greeting">היי! צ׳יפ כאן!</div>
+          <div style="font-size:13px;opacity:.85" id="chip-sub">מוכן/ה להתחיל?</div>
+        </div>
+      </div>
+      <button onclick="goToToday()" style="background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.4);border-radius:var(--radius-sm);padding:12px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;width:100%;font-family:inherit" id="today-btn">פתח/י את פעילות היום ➜</button>
+    </div>
+    <div class="card">
+      <div style="font-size:15px;font-weight:800;margin-bottom:4px">המסע שלי 🗺️</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:12px">לחץ/י על תחנה לפרטים</div>
+      <div id="trail-map" style="position:relative;width:100%;min-height:260px"></div>
+    </div>
+    <div class="card" style="padding:14px 16px">
+      <div class="streak-row">
+        <div style="font-size:30px;font-weight:800;color:var(--orange)" id="streak-num">0</div>
+        <div><div style="font-size:13px;font-weight:700;color:var(--orange)">ימים רצופים 🔥</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">כל יום שעושים – הבלוטים מתרבים!</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:15px;font-weight:800;margin-bottom:12px">6 עולמות המסע 🌍</div>
+      <div class="world-nav" id="world-nav" style="display:grid;grid-template-columns:1fr 1fr;gap:10px"></div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-btn active" onclick="navTo('screen-home',this)"><span class="nav-icon">🏠</span>בית</button>
+    <button class="nav-btn" onclick="navTo('screen-day',this)"><span class="nav-icon">📅</span>היום</button>
+    <button class="nav-btn" onclick="navTo('screen-achievements',this)"><span class="nav-icon">🏆</span>הישגים</button>
+    <button class="nav-btn" onclick="openParentGate()"><span class="nav-icon">👨‍👩‍👧</span>הורה</button>
+  </div>
+</div>
+
+<div id="screen-day" class="screen">
+  <div class="top-bar">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div><h1 id="day-screen-title">יום 1</h1><div class="sub" id="day-world-name">עולם 1</div></div>
+      <button onclick="navTo('screen-home',null)" style="background:rgba(255,255,255,.2);border:none;border-radius:8px;padding:6px 14px;color:#fff;font-size:13px;cursor:pointer;font-family:inherit">← חזרה</button>
+    </div>
+  </div>
+  <div class="content" id="day-content"></div>
+  <div class="bottom-nav">
+    <button class="nav-btn" onclick="navTo('screen-home',this)"><span class="nav-icon">🏠</span>בית</button>
+    <button class="nav-btn active"><span class="nav-icon">📅</span>היום</button>
+    <button class="nav-btn" onclick="navTo('screen-achievements',this)"><span class="nav-icon">🏆</span>הישגים</button>
+    <button class="nav-btn" onclick="openParentGate()"><span class="nav-icon">👨‍👩‍👧</span>הורה</button>
+  </div>
+</div>
+
+<div id="screen-achievements" class="screen">
+  <div class="top-bar"><h1>🏆 הישגים</h1><div class="sub">התגים שאספת במסע</div></div>
+  <div class="content">
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+        <svg id="ach-avatar" width="60" height="70" viewBox="0 0 130 155" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div>
+          <div style="font-weight:800;font-size:18px" id="ach-name">הגיבור/ת שלי</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">
+            <span class="badge" style="background:var(--acorn-light);color:var(--acorn)">🌰 <span id="ach-acorns">0</span> בלוטים</span>
+            <span class="badge" style="background:var(--green-light);color:var(--green)">✅ <span id="ach-days">0</span> ימים</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:15px;font-weight:800;margin-bottom:12px">תגי המסע</div>
+      <div class="sticker-grid" id="sticker-grid"></div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-btn" onclick="navTo('screen-home',this)"><span class="nav-icon">🏠</span>בית</button>
+    <button class="nav-btn" onclick="navTo('screen-day',this)"><span class="nav-icon">📅</span>היום</button>
+    <button class="nav-btn active"><span class="nav-icon">🏆</span>הישגים</button>
+    <button class="nav-btn" onclick="openParentGate()"><span class="nav-icon">👨‍👩‍👧</span>הורה</button>
+  </div>
+</div>
+
+<div id="screen-parent" class="screen">
+  <div class="top-bar"><h1>👨‍👩‍👧 אזור הורה</h1><div class="sub">מידע ותמיכה מקצועית</div></div>
+  <div class="content">
+    <div class="card">
+      <div style="font-size:15px;font-weight:800;margin-bottom:12px">התקדמות</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:var(--primary-light);border-radius:var(--radius-sm);padding:14px;text-align:center">
+          <div style="font-size:30px;font-weight:800;color:var(--primary)" id="p-days-done">0</div>
+          <div style="font-size:12px;color:var(--muted)">ימים הושלמו</div>
+        </div>
+        <div style="background:var(--acorn-light);border-radius:var(--radius-sm);padding:14px;text-align:center">
+          <div style="font-size:30px;font-weight:800;color:var(--acorn)" id="p-acorns-total">0</div>
+          <div style="font-size:12px;color:var(--muted)">בלוטים שנאספו</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:15px;font-weight:800;margin-bottom:10px">💡 הסבר להורה – היום</div>
+      <div class="parent-box"><div class="parent-box-label">הסבר להורה</div><div class="parent-box-text" id="parent-tip-text">התחילו את המסע ותראו הסברים יומיים כאן.</div></div>
+    </div>
+    <div class="card">
+      <div style="font-size:15px;font-weight:800;margin-bottom:14px">💌 מכתב להורים</div>
+      <div style="font-size:14px;line-height:1.8;color:var(--text)">
+        <p style="margin-bottom:10px">הורים יקרים,</p>
+        <p style="margin-bottom:10px">הממשק החוויתי הזה פותח על מנת לעזור לילדים (וגם להורים) להגיע מוכנים לכיתה א׳. המיקוד בהכנה זו הוא על פיתוח הרגלי למידה, ארגון הציוד ושמירה עליו, כתיבה, יצירת קשרים חברתיים ושמירה על איזון בין לימודים לפנאי.</p>
+        <p style="margin-bottom:10px">תחומים אלו משמעותיים להפחתת הלחץ וביסוס הביטחון וחשובים באותה מידה כמו יכולות שפה וחשבון המתורגלות לרוב במסגרות החינוכיות בגני החובה.</p>
+        <p style="margin-bottom:10px">הבסיס לחוויה הדיגיטלית הוא שיח ביניכם לבין הילד על הדברים שמצופים לו בכיתה א׳. זכרו כי המעבר מגן הילדים לכיתה א' הוא אחד השינויים המשמעותיים בחיי הילד\ה. הכנה נכונה חשובה כדי להקל על ההסתגלות למסגרת החדשה, למנוע תסכול וחרדה, ולפתח את הביטחון העצמי, העצמאות והמוטיבציה ללמידה.</p>
+        <div style="background:var(--primary-light);border-radius:var(--radius-sm);padding:12px;margin-bottom:10px">
+          <div style="font-size:12px;font-weight:800;color:var(--primary);margin-bottom:6px">הממשק מחולק כך שבכל יום יופיע לכם:</div>
+          <p style="font-size:13px;margin-bottom:6px"><strong>הסבר להורה</strong> – הרציונל לעיסוק בתחום הספציפי לאותו יום.</p>
+          <p style="font-size:13px;margin-bottom:6px"><strong>המשימה שלנו להיום</strong> – החלק שבו צ׳יפ הסנאי מסביר מה קורה לו. נסו להפוך את החלק הזה לחוויתי. התרגול קצר ופשוט והוא בסיס לשיחה – גם אם הילד טועה תמיד אפשר לנסות שוב. זכרו כי ההתנסות היא המפתח להצלחה.</p>
+          <p style="font-size:13px;margin-bottom:6px"><strong>משימת עולם אמיתי</strong> – החלק שבו אתם מוזמנים לצאת מהממשק ולתרגל בחיים האמיתיים.</p>
+          <p style="font-size:13px;margin-bottom:0"><strong>שיח הורה ילד</strong> – שאלה מכווינה לשיחה עם הילד. מומלץ להעשיר עם דוגמאות משלכם ולעודד את הילדים על הרעיונות שלהם.</p>
+        </div>
+        <p style="font-weight:700;color:var(--primary)">בהצלחה! דנה 🐿️</p>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:15px;font-weight:800;margin-bottom:14px">📝 שאלות ופידבק</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.5">נשמח לשמוע מכם! מלאו את הטופס ונחזור אליכם בהקדם.</div>
+      <div style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid #d4e4c8">
+        <iframe id="feedback-iframe"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSeGO4wkXzBczfPJCiJx2LHmIudUdbHShgEagjPjdyGpb6-klQ/viewform?embedded=true"
+          width="100%" height="794" frameborder="0" marginheight="0" marginwidth="0"
+          style="display:block;background:#fff">
+          טוען...
+        </iframe>
+      </div>
+      <div style="font-size:11px;color:var(--muted);text-align:center;margin-top:6px">הפידבק שלך חשוב לנו לשיפור המוצר 🐿️</div>
+    </div>
+    <button class="btn btn-primary" onclick="goScreen('screen-home')">← חזרה לאפליקציה</button>
+    <div style="font-size:11px;color:var(--muted);text-align:center;padding-bottom:8px">כל הזכויות שמורות © מסע לכיתה א׳</div>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-btn" onclick="navTo('screen-home',this)"><span class="nav-icon">🏠</span>בית</button>
+    <button class="nav-btn" onclick="navTo('screen-day',this)"><span class="nav-icon">📅</span>היום</button>
+    <button class="nav-btn" onclick="navTo('screen-achievements',this)"><span class="nav-icon">🏆</span>הישגים</button>
+    <button class="nav-btn active"><span class="nav-icon">👨‍👩‍👧</span>הורה</button>
+  </div>
+</div>
+
+<div id="parent-gate" class="gate-overlay" style="display:none" onclick="closeGateIfOutside(event)">
+  <div class="gate-box">
+    <h3 style="font-size:17px;font-weight:800;margin-bottom:8px">🔐 כניסה לאזור הורים</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.5">כדי לוודא שהילד/ה לא נכנס/ת לבד, פתור/י את החישוב:</p>
+    <div class="gate-q" id="gate-question"></div>
+    <input type="text" class="gate-input" id="gate-answer" placeholder="תשובה..." inputmode="numeric"/>
+    <div class="gate-err" id="gate-err">תשובה שגויה, נסה/י שוב</div>
+    <button class="btn btn-primary" onclick="checkGate()">כניסה ✓</button>
+    <button class="btn" style="margin-top:8px;background:none;color:var(--muted);border:1px solid #ddd;padding:10px" onclick="closeGate()">ביטול</button>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+<div id="coin-anim" class="coin-anim"></div>
+
+<script>
+/* ══ WORLDS ══ */
+const WORLDS=[
+  {name:"אני יכול/ה בעצמי!",emoji:"💪",color:"#5B8C3E",bg:"#EAF3DE",days:[1,2,3,4,5]},
+  {name:"סדר היום החדש שלי",emoji:"⏰",color:"#2D6BE4",bg:"#D6E8FF",days:[6,7,8,9,10]},
+  {name:"הגוף שלי מוכן",emoji:"🧘",color:"#16A085",bg:"#E0F5F1",days:[11,12,13,14,15]},
+  {name:"הציוד שלי ואני",emoji:"🎒",color:"#E67E22",bg:"#FEF0E0",days:[16,17,18,19,20]},
+  {name:"החברים החדשים שלי",emoji:"🤝",color:"#E84393",bg:"#FFE8F4",days:[21,22,23,24,25]},
+  {name:"צועדים אל השער",emoji:"🎓",color:"#7C4DBC",bg:"#EDE7F6",days:[26,27,28,29,30]}
+];
+
+const BADGES=[
+  {emoji:"🌟",name:"יוצאים לדרך!",trigger:1},{emoji:"👕",name:"אלוף/ת הלבוש",trigger:2},
+  {emoji:"👟",name:"רגליים נבונות",trigger:3},{emoji:"🧼",name:"נקי/ה ומסודר/ת",trigger:4},
+  {emoji:"🛡️",name:"שומר/ת החפצים",trigger:5},{emoji:"☀️",name:"כיף בבוקר",trigger:6},
+  {emoji:"🌙",name:"כוכב/ת הערב",trigger:7},{emoji:"⏱️",name:"אשף/ת השעון",trigger:8},
+  {emoji:"🐴",name:"הקפיצה הגמישה",trigger:9},{emoji:"📅",name:"מתכנן/ת העתיד",trigger:10},
+  {emoji:"👂",name:"אוזני קשב",trigger:11},{emoji:"🪨",name:"גב חזק",trigger:12},
+  {emoji:"🎈",name:"כיף להרגע",trigger:13},{emoji:"🦅",name:"עיני נץ",trigger:14},
+  {emoji:"⚡",name:"אלוף/ת הוויסות",trigger:15},{emoji:"✏️",name:"אצבעות קסם",trigger:16},
+  {emoji:"✂️",name:"אשף/ת הגזירה",trigger:17},{emoji:"📦",name:"קלמר למופת",trigger:18},
+  {emoji:"🎽",name:"ילקוט על הגב",trigger:19},{emoji:"🏡",name:"אלוף/ת הארגון",trigger:20},
+  {emoji:"🏅",name:"שחקן/ית נשמה",trigger:21},{emoji:"💛",name:"לב זהב",trigger:22},
+  {emoji:"🎤",name:"חבר/ה להקשבה",trigger:23},{emoji:"🕊️",name:"מגשר/ת צעיר/ה",trigger:24},
+  {emoji:"🎖️",name:"שגריר/ת כבוד",trigger:25},{emoji:"🔔",name:"הצלצול המוכר",trigger:26},
+  {emoji:"🍱",name:"אלוף/ת המפית",trigger:27},{emoji:"⚖️",name:"שומר/ת החוקים",trigger:28},
+  {emoji:"🧩",name:"פתרון בעיות",trigger:29},{emoji:"🎓",name:"מוכן/ה לכיתה א׳",trigger:30}
+];
+
+// משתני מערכת בסיסיים למניעת שגיאות הרצה
+let S = { acorns: 0, streak: 0, daysDone: [], gender: 'boy', childName: '' };
+function loadS() { try { const data = localStorage.getItem('masat_state'); if(data) S = JSON.parse(data); } catch(e){} }
+function saveS() { try { localStorage.setItem('masat_state', JSON.stringify(S)); } catch(e){} }
+function goScreen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); const el = document.getElementById(id); if(el) el.classList.add('active'); window.scrollTo(0,0); }
+function selectGender(g) { S.gender = g; document.getElementById('btn-boy').classList.toggle('selected', g==='boy'); document.getElementById('btn-girl').classList.toggle('selected', g==='girl'); }
+function refreshPreview() {} function curOpts() { return {}; } function renderAv() {} function initQAMode() {} function pickOpt() {} function finalizeAvatar() { S.childName = document.getElementById('child-name').value; saveS(); goScreen('screen-home'); }
+function navTo(id, btn) { goScreen(id); if(btn) { document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); } }
+function openParentGate() { const a = Math.floor(Math.random()*10)+5, b = Math.floor(Math.random()*10)+2; window.gateAns = a + b; document.getElementById('gate-question').innerText = `${a} + ${b} = ?`; document.getElementById('gate-answer').value = ''; document.getElementById('gate-err').style.display = 'none'; document.getElementById('parent-gate').style.style.display = 'flex'; }
+function closeGate() { document.getElementById('parent-gate').style.display = 'none'; }
+function closeGateIfOutside(e) { if(e.target.id === 'parent-gate') closeGate(); }
+function checkGate() { const ans = parseInt(document.getElementById('gate-answer').value); if(ans === window.gateAns) { closeGate(); goScreen('screen-parent'); } else { document.getElementById('gate-err').style.display = 'block'; } }
+function goToToday() { goScreen('screen-day'); }
+
+/* ══ INIT ══ */
+loadS(); selectGender(S.gender||'boy'); refreshPreview();
+if(S.childName){ renderAv('home-avatar-mini',curOpts()); goScreen('screen-home'); }
+else goScreen('screen-onboard');
+initQAMode();
+
+// פונקציית הרישום המאובטחת המעודכנת ללא איסוף מייל
+async function doRegister() {
+  const parentName = document.getElementById('parent-name').value.trim();
+  const childName = document.getElementById('child-name').value.trim();
+
+  if (!parentName || !childName) {
+    alert('נא למלא את כל שדות החובה');
+    return;
+  }
+
+  localStorage.setItem('parentName', parentName);
+  localStorage.setItem('childName', childName);
+
+  try {
+    fetch('/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: parentName, email: "לא נאסף" })
+    });
+  } catch (e) { console.error(e); }
+
+  goScreen('screen-avatar');
+}
+</script>
+</body>
+</html>
