@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
+<!-- Google Analytics - להחליף G-QG8H2CQHTV בקוד שלך -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QG8H2CQHTV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QG8H2CQHTV');
+
+  // אירועים מותאמים - ספירת רישום והשלמות
+  function trackEvent(action, label){
+    if(typeof gtag !== 'undefined'){
+      gtag('event', action, {event_category:'masav', event_label:label});
+    }
+  }
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -151,7 +166,7 @@ input[type=text]:focus{outline:none;border-color:var(--primary)}
   <div style="padding:40px 24px 24px;flex:1;display:flex;flex-direction:column;gap:24px">
     <div style="font-size:80px;text-align:center;padding:8px 0">🐿️</div>
     <div style="text-align:center">
-      <div style="font-size:30px;font-weight:800;color:var(--primary);margin-bottom:16px">המסע לכיתה א׳</div>
+      <div style="font-size:30px;font-weight:800;color:var(--primary);margin-bottom:16px">מסע לכיתה א׳</div>
       <div style="font-size:15px;color:var(--text);line-height:1.75;margin-bottom:12px">הצטרפו לצ׳יפ הסנאי החביב ל-30 ימי הכנה<br>ופיתוח תחושת המוכנות לכיתה א׳</div>
       <div style="font-size:14px;color:var(--muted);line-height:1.75">משימות אינטראקטיביות יומיות שמקרבות ומחזקות את הקשר ביניכם.<br>התוכנית כוללת 30 ימי תרגול גמישים –<br>אתם בוחרים מתי וכמה, גם לא ברצף!</div>
     </div>
@@ -173,7 +188,7 @@ input[type=text]:focus{outline:none;border-color:var(--primary)}
         <button class="gender-btn" id="btn-girl" onclick="selectGender('girl')">👧<span>בת</span></button>
       </div>
     </div>
-    <button class="btn btn-primary" onclick="doRegister()">הבא: בניית הגיבור/ה שלך ✨</button>
+    <button class="btn btn-primary" onclick="doRegister()">הבא: בניית הגיבור/ת שלך ✨</button>
     <div style="font-size:11px;color:var(--muted);text-align:center">הפרטים נשמרים רק במכשיר שלך</div>
   </div>
 </div>
@@ -342,7 +357,7 @@ input[type=text]:focus{outline:none;border-color:var(--primary)}
         </div>
         <div style="background:var(--acorn-light);border-radius:var(--radius-sm);padding:14px;text-align:center">
           <div style="font-size:30px;font-weight:800;color:var(--acorn)" id="p-acorns-total">0</div>
-          <div style="font-size:12px;color:var(--muted)">בלוטים שנאספו</div>
+          <div style="font-size:12px;color:var(--muted)">בלוטים נצברו</div>
         </div>
       </div>
     </div>
@@ -421,11 +436,11 @@ const WORLDS=[
 const BADGES=[
   {emoji:"🌟",name:"יוצאים לדרך!",trigger:1},{emoji:"👕",name:"אלוף/ת הלבוש",trigger:2},
   {emoji:"👟",name:"רגליים נבונות",trigger:3},{emoji:"🧼",name:"נקי/ה ומסודר/ת",trigger:4},
-  {emoji:"🛡️",name:"שומר/ת החפצים",trigger:5},{emoji:"☀️",name:"כיף בבוקר",trigger:6},
+  {emoji:"🛡️",name:"שומר/ת החפצים",trigger:5},{emoji:"☀️",name:"שעון הבוקר",trigger:6},
   {emoji:"🌙",name:"כוכב/ת הערב",trigger:7},{emoji:"⏱️",name:"אשף/ת השעון",trigger:8},
   {emoji:"🐴",name:"הקפיצה הגמישה",trigger:9},{emoji:"📅",name:"מתכנן/ת העתיד",trigger:10},
   {emoji:"👂",name:"אוזני קשב",trigger:11},{emoji:"🪨",name:"גב חזק",trigger:12},
-  {emoji:"🎈",name:"כיף להרגע",trigger:13},{emoji:"🦅",name:"עיני נץ",trigger:14},
+  {emoji:"🎈",name:"רוח רגיעה",trigger:13},{emoji:"🦅",name:"עיני נשר",trigger:14},
   {emoji:"⚡",name:"אלוף/ת הוויסות",trigger:15},{emoji:"✏️",name:"אצבעות קסם",trigger:16},
   {emoji:"✂️",name:"אשף/ת הגזירה",trigger:17},{emoji:"📦",name:"קלמר למופת",trigger:18},
   {emoji:"🎽",name:"ילקוט על הגב",trigger:19},{emoji:"🏡",name:"אלוף/ת הארגון",trigger:20},
@@ -449,7 +464,7 @@ const DAYS=[
   question:"מה הדבר שאתה/את הכי מצפה לו בכיתה א׳?",
   options:["חברים חדשים 👫","ללמוד לקרוא 📖","ארוחת עשר בהפסקה 🥪","להיות גדול/ה 🌟"],
   correct:-1,
-  feedback:["מגניב! חברים חדשים זה הדבר הכי כיף בכיתה א׳! צ׳יפ גם מצפה לפגוש חברים חדשים ביער!","קריאה זה ממש כוח על! צ׳יפ אוהב לקרוא מפות של היער שלו!","ארוחת עשר זה רגע מיוחד! צ׳יפ תמיד שומר אלון מיוחד להפסקה!","כן! להיות גדול/ה זה תחושה מדהימה! צ׳יפ גם מרגיש ככה!"]},
+  feedback:["מגניב! חברים חדשים זה הדבר הכי כיף בכיתה א׳! צ׳יפ גם מצפה לפגוש חברים חדשים ביער!","קריאה זה ממש כוח על! צ׳יפ אוהב לקרוא מפות של האלונים שלו!","ארוחת עשר זה רגע מיוחד! צ׳יפ תמיד שומר אלון מיוחד להפסקה!","כן! להיות גדול/ה זה תחושה מדהימה! צ׳יפ גם מרגיש ככה!"]},
  real:"לדבר עם ההורה – כל אחד אומר דבר אחד שמצפה לו בכיתה א׳.",
  convo:"שאלו: 'ממה אתה/את קצת חושש/ת? איך נוכל לעזור לך להרגיש יותר מוכן/ה?'",
  reward:"50 בלוטים + תג 'יוצאים לדרך' 🌟"},
@@ -676,7 +691,7 @@ const DAYS=[
    {stmt:"קלמר",correct:true},
    {stmt:"כלב צעצוע גדול",correct:false}
   ]},
- real:"לסדר תיק אמיתי. מומלץ לרכוש ילקוט עם גב מרופד ורצועות רחבות ומרופדות. שימו לב לנשיאת משקל שאינו עולה על 10% ממשקל הגוף, סדרו את הפריטים כך שהכבדים ביותר יהיו קרובים לגב והקפידו על נשיאת התיק תוך שימוש בשתי רצועות הכתפיים",
+ real:"לסדר תיק אמיתי לפי הרשימה – ערב לפני.",
  convo:"שאלו: 'למה לא כדאי להשאיר רוכסנים פתוחים כשיוצאים?'",
  reward:"30 בלוטים + תג 'ילקוט על הגב' 🎽"},
 
@@ -885,7 +900,7 @@ function doRegister(){
   g('avatar-sub').textContent=S.gender==='girl'?`בני את הגיבורה שלך, ${cn}`:`בנה את הגיבור שלך, ${cn}`;
   saveS();refreshPreview();goScreen('screen-avatar');
 }
-function finalizeAvatar(){saveS();goScreen('screen-home');showToast(`ברוכ/ה הבאה ${S.childName}! 🐿️`);}
+function finalizeAvatar(){saveS();goScreen('screen-home');showToast(`ברוכ/ה הבאה ${S.childName}! 🐿️`);trackEvent('register','new_user');}
 
 /* ══ GENDER ADAPT ══ */
 function isBoy(){return S.gender==='boy';}
@@ -1259,7 +1274,7 @@ function completeDay(dayNum){
   S.acorns+=pts;S.streak++;
   if(dayNum===S.currentDay&&dayNum<30)S.currentDay=dayNum+1;
   saveS();showCoin(pts);
-  showToast(dayNum===30?`🎉 מזל טוב! השלמת את המסע!`:`🌰 +${pts} בלוטים! יום ${dayNum} הושלם!`);
+  showToast(dayNum===30?`🎉 מזל טוב! השלמת את המסע!`:`🌰 +${pts} בלוטים! יום ${dayNum} הושלם!`);trackEvent(dayNum===30?'journey_complete':'day_complete','day_'+dayNum);
   setTimeout(()=>renderDay(dayNum),800);
 }
 
