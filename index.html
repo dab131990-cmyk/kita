@@ -40,7 +40,8 @@ html,body{height:100%;font-family:'Segoe UI',Arial,sans-serif;direction:rtl;back
 .screen{display:none;flex-direction:column;min-height:100vh;padding-bottom:84px}
 #screen-onboard{min-height:auto;padding-bottom:0}
 .screen.active{display:flex}
-.top-bar{background:var(--primary);color:#fff;padding:16px 20px 12px;position:sticky;top:0;z-index:10}.top-bar h1{font-size:18px;font-weight:700}
+.top-bar{background:var(--primary);color:#fff;padding:16px 20px 22px;position:sticky;top:0;z-index:10;position:relative}
+.top-bar::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:16px;background:var(--bg);border-radius:50% 50% 0 0 / 16px 16px 0 0}.top-bar h1{font-size:18px;font-weight:700}
 .top-bar .sub{font-size:13px;opacity:.8;margin-top:2px}
 .acorn-bar{display:flex;align-items:center;gap:6px;margin-top:8px}
 .acorn-count{background:var(--acorn);color:#fff;font-weight:700;font-size:14px;padding:4px 12px;border-radius:20px}
@@ -282,15 +283,15 @@ input[type=text]:focus{outline:none;border-color:var(--primary)}
     </div>
   </div>
   <div class="content">
-    <div style="background:linear-gradient(135deg,#5B8C3E,#3d6128);border-radius:var(--radius);padding:18px;color:#fff">
+    <div style="background:#EAF3DE;border-radius:var(--radius);padding:18px;color:#1A2E1A;border:1px solid #c0dd97">
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
         <span style="font-size:36px">🐿️</span>
         <div>
-          <div style="font-size:15px;font-weight:700" id="chip-greeting">היי! צ׳יפ כאן!</div>
+          <div style="font-size:15px;font-weight:700" id="chip-greeting"style="color:#3B6D11">היי! צ׳יפ כאן!</div>
           <div style="font-size:13px;opacity:.85" id="chip-sub">מוכן/ה להתחיל?</div>
         </div>
       </div>
-      <button onclick="goToToday()" style="background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.4);border-radius:var(--radius-sm);padding:12px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;width:100%;font-family:inherit"" id="today-btn">פתח/י את פעילות היום ➜</button>
+      <button onclick="goToToday()" style="background:#5B8C3E;border:none;border-radius:var(--radius-sm);padding:12px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;width:100%;font-family:inherit"" id="today-btn">פתח/י את פעילות היום ➜</button>
     </div>
     <div class="card">
       <div style="font-size:15px;font-weight:800;margin-bottom:4px">המסע שלי 🗺️</div>
