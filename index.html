@@ -1398,6 +1398,20 @@ function buildSvgMatch(container,act,dayNum,done){
         fb.className='feedback-box show '+(i===r.correct?'correct':'wrong');
         if(i===r.correct){
           setTimeout(()=>{roundIdx++;showRound();},1400);
+        } else {
+          const retryBtn=document.createElement('button');
+          retryBtn.style.cssText='background:var(--primary);color:#fff;border:none;border-radius:var(--radius-sm);padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:10px;width:100%';
+          retryBtn.textContent='נסה/י שוב 🔄';
+          retryBtn.onclick=()=>{
+            opts.querySelectorAll('.choice-opt').forEach(b=>{b.disabled=false;b.classList.remove('wrong','correct');});
+            fb.className='feedback-box';retryBtn.remove();
+          };
+          rdiv.appendChild(retryBtn);
+          const skipBtn=document.createElement('button');
+          skipBtn.style.cssText='background:none;color:var(--muted);border:none;font-size:12px;cursor:pointer;font-family:inherit;margin-top:4px;width:100%;text-decoration:underline';
+          skipBtn.textContent='המשך לשאלה הבאה ←';
+          skipBtn.onclick=()=>{roundIdx++;showRound();};
+          rdiv.appendChild(skipBtn);
         }
       };
       opts.appendChild(btn);
