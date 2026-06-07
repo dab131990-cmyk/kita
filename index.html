@@ -1429,7 +1429,35 @@ function buildSvgMatch(container,act,dayNum,done){
 
   container.appendChild(wrap);
 }
-
+/* ══ PRINT TAG ══ */
+function printFinishTag(){
+  const name=S.childName||'';
+  const boy=isBoy();
+  const title=boy?'מוכן לכיתה א׳!':'מוכנה לכיתה א׳!';
+  const sub=boy?`השלים 30 ימי מסע עם צ׳יפ`:`השלימה 30 ימי מסע עם צ׳יפ`;
+  const tagHTML=`
+<div style="width:220px;border:3px solid #5B8C3E;border-radius:18px;padding:24px 16px;display:flex;flex-direction:column;align-items:center;gap:12px;font-family:Arial,sans-serif;direction:rtl;background:#fff">
+  <div style="width:100%;height:3px;background:repeating-linear-gradient(90deg,#5B8C3E 0,#5B8C3E 7px,transparent 7px,transparent 12px);border-radius:2px"></div>
+  <div style="font-size:56px;line-height:1">🐿️</div>
+  <div style="font-size:26px;font-weight:800;color:#3B6D11;text-align:center;line-height:1.25">${title}</div>
+  <div style="font-size:18px;font-weight:700;color:#5B8C3E;text-align:center;border-bottom:2px solid #5B8C3E;padding-bottom:4px;min-width:140px">${name}</div>
+  <div style="display:flex;gap:4px;font-size:18px">⭐⭐⭐⭐⭐</div>
+  <div style="font-size:11px;color:#8B5E3C;text-align:center">${sub}</div>
+  <div style="width:100%;height:3px;background:repeating-linear-gradient(90deg,#5B8C3E 0,#5B8C3E 7px,transparent 7px,transparent 12px);border-radius:2px"></div>
+</div>`;
+  const w=window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8"><title>תג סיום – ${name}</title>
+<style>
+body{margin:0;background:#f4f7f2;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:20px;font-family:Arial,sans-serif}
+.print-btn{background:#5B8C3E;color:#fff;border:none;border-radius:10px;padding:12px 28px;font-size:16px;cursor:pointer}
+@media print{body{background:#fff}.print-btn{display:none}}
+</style></head>
+<body>
+${tagHTML}
+<button class="print-btn" onclick="window.print()">🖨️ הדפס</button>
+</body></html>`);
+  w.document.close();
+}
 /* ══ QA MODE ══ */
 // סרגל QA – מוצג רק כשה-URL מכיל ?qa=1
 function initQAMode(){
