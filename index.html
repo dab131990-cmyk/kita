@@ -1043,6 +1043,11 @@ function renderDay(dayNum){
     fin.style.cssText='background:linear-gradient(135deg,#5B8C3E,#7C4DBC);border-radius:var(--radius);padding:24px;text-align:center;color:#fff';
     fin.innerHTML=`<div style="font-size:52px">🎓</div><div style="font-size:20px;font-weight:800;margin-top:8px">${adapt('מזל טוב! סיימת את המסע!')}</div><div style="font-size:14px;opacity:.85;margin-top:6px">${S.childName} ${isBoy()?'מוכן':'מוכנה'} לכיתה א׳! 🎉</div>`;
     dc.appendChild(fin);
+    const printBtn=document.createElement('button');
+    printBtn.style.cssText='background:#E8B84B;color:#7a5c1e;border:none;border-radius:var(--radius-sm);padding:14px;font-size:16px;font-weight:800;cursor:pointer;width:100%;font-family:inherit;margin-top:12px';
+    printBtn.textContent='🖨️ הדפס את התג שלך!';
+    printBtn.onclick=()=>printFinishTag();
+    dc.appendChild(printBtn);
   }
 }
 
