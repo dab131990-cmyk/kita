@@ -150,7 +150,8 @@ input[type=text]:focus{outline:none;border-color:var(--primary)}
 .toast.show{opacity:1}
 .coin-anim{position:fixed;top:50%;left:50%;font-size:44px;font-weight:800;z-index:300;pointer-events:none;opacity:0;color:var(--acorn)}
 @keyframes coinPop{0%{opacity:1;transform:translate(-50%,-50%) scale(.5)}55%{opacity:1;transform:translate(-50%,-80%) scale(1.3)}100%{opacity:0;transform:translate(-50%,-130%) scale(1)}}
-.coin-anim.show{animation:coinPop .75s ease forwards}
+.coin-anim.show{animation:coinPop .75s ease forwards}@keyframes chipBounce{0%{transform:scale(0) rotate(-10deg);opacity:0}60%{transform:scale(1.2) rotate(5deg);opacity:1}80%{transform:scale(.9) rotate(-3deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+.chip-bounce{animation:chipBounce .6s ease forwards}
 /* parent gate */
 .gate-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;display:flex;align-items:center;justify-content:center}
 .gate-box{background:#fff;border-radius:var(--radius);padding:24px;margin:20px;width:100%;max-width:340px}
