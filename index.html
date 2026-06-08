@@ -38,10 +38,9 @@
 }
 html,body{height:100%;font-family:'Segoe UI',Arial,sans-serif;direction:rtl;background:var(--bg);color:var(--text);overflow-x:hidden}
 .screen{display:none;flex-direction:column;min-height:100vh;padding-bottom:84px}
-#screen-onboard{min-height:auto;padding-bottom:0}
 .screen.active{display:flex}
-.top-bar{background:var(--primary);color:#fff;padding:16px 20px 22px;position:sticky;top:0;z-index:10;position:relative}
-.top-bar::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:16px;background:var(--bg);border-radius:50% 50% 0 0 / 16px 16px 0 0}.top-bar h1{font-size:18px;font-weight:700}
+.top-bar{background:var(--primary);color:#fff;padding:16px 20px 12px;position:sticky;top:0;z-index:10}
+.top-bar h1{font-size:18px;font-weight:700}
 .top-bar .sub{font-size:13px;opacity:.8;margin-top:2px}
 .acorn-bar{display:flex;align-items:center;gap:6px;margin-top:8px}
 .acorn-count{background:var(--acorn);color:#fff;font-weight:700;font-size:14px;padding:4px 12px;border-radius:20px}
@@ -150,8 +149,7 @@ input[type=text]:focus{outline:none;border-color:var(--primary)}
 .toast.show{opacity:1}
 .coin-anim{position:fixed;top:50%;left:50%;font-size:44px;font-weight:800;z-index:300;pointer-events:none;opacity:0;color:var(--acorn)}
 @keyframes coinPop{0%{opacity:1;transform:translate(-50%,-50%) scale(.5)}55%{opacity:1;transform:translate(-50%,-80%) scale(1.3)}100%{opacity:0;transform:translate(-50%,-130%) scale(1)}}
-.coin-anim.show{animation:coinPop .75s ease forwards}@keyframes chipBounce{0%{transform:scale(0) rotate(-10deg);opacity:0}60%{transform:scale(1.2) rotate(5deg);opacity:1}80%{transform:scale(.9) rotate(-3deg)}100%{transform:scale(1) rotate(0);opacity:1}}
-.chip-bounce{animation:chipBounce .6s ease forwards}
+.coin-anim.show{animation:coinPop .75s ease forwards}
 /* parent gate */
 .gate-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;display:flex;align-items:center;justify-content:center}
 .gate-box{background:#fff;border-radius:var(--radius);padding:24px;margin:20px;width:100%;max-width:340px}
@@ -165,33 +163,41 @@ input[type=text]:focus{outline:none;border-color:var(--primary)}
 
 <!-- ONBOARD -->
 <div id="screen-onboard" class="screen active">
-  <div style="padding:36px 24px 20px;flex:0;display:flex;flex-direction:column;align-items:center;text-align:center">
-    <div style="font-size:64px;line-height:1;margin-bottom:12px">🐿️</div>
-    <div style="font-size:28px;font-weight:800;color:var(--primary);margin-bottom:8px">המסע לכיתה א׳</div>
-    <div style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:4px"> הצטרפו לצ׳יפ הסנאי החביב ל-30 ימי הכנה</div>
-    <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px">אתם בוחרים מתי וכמה, גם לא ברצף!</div>
-
-    <div style="display:flex;align-items:center;gap:0;margin-bottom:6px">
-      <div style="width:12px;height:12px;border-radius:50%;background:#27AE60"></div>
-      <div style="width:14px;height:2px;background:#C0DD97"></div>
-      <div style="width:12px;height:12px;border-radius:50%;background:#27AE60"></div>
-      <div style="width:14px;height:2px;background:#C0DD97"></div>
-      <div style="width:12px;height:12px;border-radius:50%;background:#27AE60"></div>
-      <div style="width:14px;height:2px;background:#C0DD97"></div>
-      <div style="width:16px;height:16px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 3px #EAF3DE"></div>
-      <div style="width:14px;height:2px;background:#E8B84B"></div>
-      <div style="width:12px;height:12px;border-radius:50%;background:#E8B84B;opacity:.7"></div>
-      <div style="width:14px;height:2px;background:#d4e4c8"></div>
-      <div style="width:12px;height:12px;border-radius:50%;background:#d4e4c8"></div>
-      <div style="width:14px;height:2px;background:#d4e4c8"></div>
-      <div style="width:12px;height:12px;border-radius:50%;background:#d4e4c8"></div>
-      <div style="width:14px;height:2px;background:#d4e4c8"></div>
-      <div style="width:18px;height:18px;border-radius:50%;background:#E8B84B;border:2px solid #c8a030;display:flex;align-items:center;justify-content:center;font-size:10px">🎓</div>
+  <div style="padding:40px 24px 24px;flex:1;display:flex;flex-direction:column;gap:24px">
+    <div style="text-align:center;padding:8px 0"><svg width="160" height="175" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto">
+  <ellipse cx="50" cy="100" rx="22" ry="7" fill="#5B8C3E" opacity=".2"/>
+  <path d="M33 48 Q31 33 50 30 Q69 33 67 48" fill="#c8956c"/>
+  <path d="M31 44 Q24 28 20 26 Q18 33 24 40 Q26 42 29 44Z" fill="#D4855A"/>
+  <path d="M69 44 Q76 28 80 26 Q82 33 76 40 Q74 42 71 44Z" fill="#D4855A"/>
+  <ellipse cx="50" cy="58" rx="19" ry="20" fill="#E8A87C"/>
+  <ellipse cx="50" cy="65" rx="13" ry="11" fill="#F5C09A"/>
+  <circle cx="40" cy="53" r="7" fill="#fff"/>
+  <circle cx="60" cy="53" r="7" fill="#fff"/>
+  <circle cx="40.5" cy="54" r="4.5" fill="#2d1f14"/>
+  <circle cx="60.5" cy="54" r="4.5" fill="#2d1f14"/>
+  <circle cx="41.5" cy="52.5" r="1.6" fill="#fff"/>
+  <circle cx="61.5" cy="52.5" r="1.6" fill="#fff"/>
+  <ellipse cx="50" cy="67" rx="5" ry="3" fill="#c47b6e"/>
+  <path d="M43 72 Q50 77 57 72" stroke="#c47b6e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="38" cy="62" rx="5" ry="2.5" fill="#E8906A" opacity=".5"/>
+  <ellipse cx="62" cy="62" rx="5" ry="2.5" fill="#E8906A" opacity=".5"/>
+  <path d="M50 78 Q33 83 29 97 Q39 102 50 103 Q61 102 71 97 Q67 83 50 78Z" fill="#8B5E3C"/>
+  <path d="M42 82 L44 95 M50 82 L50 96 M58 82 L56 95" stroke="#6b4a2a" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M50 78 Q44 86 50 92 Q56 86 50 78Z" fill="#E8A87C"/>
+  <path d="M68 65 Q80 55 82 48 Q86 52 82 60 Q78 66 72 68Z" fill="#8B5E3C"/>
+  <path d="M70 65 Q78 58 80 52 Q82 55 80 60 Q76 64 72 66Z" fill="#c8956c"/>
+  <circle cx="30" cy="72" r="7" fill="#E8B84B" stroke="#c8956c" stroke-width="1.5"/>
+  <ellipse cx="30" cy="70" rx="4" ry="3" fill="#D4A020" opacity=".5"/>
+  <path d="M30 63 Q32 60 34 62" stroke="#5B8C3E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M26 68 L34 68" stroke="#c8a030" stroke-width="1" opacity=".6"/>
+</svg></div>
+    <div style="text-align:center">
+      <div style="font-size:30px;font-weight:800;color:var(--primary);margin-bottom:16px">מסע לכיתה א׳</div>
+      <div style="font-size:15px;color:var(--text);line-height:1.75;margin-bottom:12px">הצטרפו לצ׳יפ הסנאי החביב ל-30 ימי הכנה<br>ופיתוח תחושת המוכנות לכיתה א׳</div>
+      <div style="font-size:14px;color:var(--muted);line-height:1.75">משימות אינטראקטיביות יומיות שמקרבות ומחזקות את הקשר ביניכם.<br>התוכנית כוללת 30 ימי תרגול גמישים –<br>אתם בוחרים מתי וכמה, גם לא ברצף!</div>
     </div>
-    <div style="font-size:11px;color:var(--muted);margin-bottom:24px">30 תחנות · 6 עולמות</div>
-
-    <button class="btn btn-primary" onclick="goScreen('screen-register')" style="font-size:17px;padding:16px;border-radius:14px;width:100%">בואו נתחיל! 🎉</button>
-    <div style="font-size:11px;color:var(--muted);text-align:center;margin-top:12px">פותח על ידי דנה ברינדט, מרפאה בעיסוק – כל הזכויות שמורות</div>
+    <button class="btn btn-primary" onclick="goScreen('screen-register')" style="margin-top:auto;font-size:18px;padding:16px">בואו נתחיל! 🎉</button>
+    <div style="font-size:11px;color:var(--muted);text-align:center">פותח על ידי מרפאה בעיסוק – כל הזכויות שמורות</div>
   </div>
 </div>
 
@@ -200,6 +206,8 @@ input[type=text]:focus{outline:none;border-color:var(--primary)}
   <div class="top-bar"><h1>🐿️ הרשמה</h1><div class="sub">כמה פרטים קטנים ומתחילים</div></div>
   <div class="content">
     <div class="input-wrap"><label>שם ההורה</label><input type="text" id="parent-name" placeholder="למשל: מיכל"/></div>
+    <div class="input-wrap"><label>מייל ההורה</label><input type="text" id="parent-email" placeholder="למשל: michal@gmail.com" inputmode="email"/></div>
+    <div class="input-wrap"><label>מייל ההורה</label><input type="text" id="parent-email" placeholder="למשל: michal@gmail.com" inputmode="email"/></div>
     <div class="input-wrap"><label>שם הילד/ה</label><input type="text" id="child-name" placeholder="למשל: נועה"/></div>
     <div class="input-wrap">
       <label>הילד/ה שלי הוא/היא:</label>
@@ -208,6 +216,19 @@ input[type=text]:focus{outline:none;border-color:var(--primary)}
         <button class="gender-btn" id="btn-girl" onclick="selectGender('girl')">👧<span>בת</span></button>
       </div>
     </div>
+    <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;background:var(--primary-light);border-radius:var(--radius-sm);padding:12px">
+      <input type="checkbox" id="email-consent" style="width:18px;height:18px;margin-top:1px;flex-shrink:0;cursor:pointer;accent-color:var(--primary)"/>
+      <span style="font-size:13px;color:var(--text);line-height:1.5">אני מאשר/ת קבלת עדכונים, תכנים וטיפים על כיתה א׳ למייל שלי</span>
+    </label>
+    <div style="font-size:11px;color:var(--muted);text-align:center;line-height:1.6">
+      המידע שלך מאובטח ולא יועבר לצד שלישי.
+      <br>הרשמה = הסכמה ל<span style="color:var(--primary);cursor:pointer;text-decoration:underline" onclick="showPrivacy()">מדיניות הפרטיות</span>
+    </div>
+    <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;background:var(--primary-light);border-radius:var(--radius-sm);padding:12px">
+      <input type="checkbox" id="email-consent" style="width:18px;height:18px;margin-top:1px;flex-shrink:0;cursor:pointer;accent-color:var(--primary)"/>
+      <span style="font-size:13px;color:var(--text);line-height:1.5">אני מאשר/ת קבלת עדכונים, תכנים וטיפים על כיתה א׳ למייל שלי</span>
+    </label>
+    <div style="font-size:11px;color:var(--muted);text-align:center;line-height:1.6">המידע שלך מאובטח ולא יועבר לצד שלישי.<br><span style="color:var(--primary);cursor:pointer;text-decoration:underline" onclick="showPrivacy()">מדיניות הפרטיות</span></div>
     <button class="btn btn-primary" onclick="doRegister()">הבא: בניית הגיבור/ת שלך ✨</button>
     <div style="font-size:11px;color:var(--muted);text-align:center">הפרטים נשמרים רק במכשיר שלך</div>
   </div>
@@ -283,15 +304,37 @@ input[type=text]:focus{outline:none;border-color:var(--primary)}
     </div>
   </div>
   <div class="content">
-    <div style="background:#EAF3DE;border-radius:var(--radius);padding:18px;color:#1A2E1A;border:1px solid #c0dd97">
+    <div style="background:linear-gradient(135deg,#5B8C3E,#3d6128);border-radius:var(--radius);padding:18px;color:#fff">
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-        <span style="font-size:36px">🐿️</span>
+        <svg width="36" height="40" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+  <ellipse cx="50" cy="100" rx="22" ry="7" fill="#5B8C3E" opacity=".2"/>
+  <path d="M33 48 Q31 33 50 30 Q69 33 67 48" fill="#c8956c"/>
+  <path d="M31 44 Q24 28 20 26 Q18 33 24 40 Q26 42 29 44Z" fill="#D4855A"/>
+  <path d="M69 44 Q76 28 80 26 Q82 33 76 40 Q74 42 71 44Z" fill="#D4855A"/>
+  <ellipse cx="50" cy="58" rx="19" ry="20" fill="#E8A87C"/>
+  <ellipse cx="50" cy="65" rx="13" ry="11" fill="#F5C09A"/>
+  <circle cx="40" cy="53" r="7" fill="#fff"/>
+  <circle cx="60" cy="53" r="7" fill="#fff"/>
+  <circle cx="40.5" cy="54" r="4.5" fill="#2d1f14"/>
+  <circle cx="60.5" cy="54" r="4.5" fill="#2d1f14"/>
+  <circle cx="41.5" cy="52.5" r="1.6" fill="#fff"/>
+  <circle cx="61.5" cy="52.5" r="1.6" fill="#fff"/>
+  <ellipse cx="50" cy="67" rx="5" ry="3" fill="#c47b6e"/>
+  <path d="M43 72 Q50 77 57 72" stroke="#c47b6e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="38" cy="62" rx="5" ry="2.5" fill="#E8906A" opacity=".5"/>
+  <ellipse cx="62" cy="62" rx="5" ry="2.5" fill="#E8906A" opacity=".5"/>
+  <path d="M50 78 Q33 83 29 97 Q39 102 50 103 Q61 102 71 97 Q67 83 50 78Z" fill="#8B5E3C"/>
+  <path d="M50 78 Q44 86 50 92 Q56 86 50 78Z" fill="#E8A87C"/>
+  <path d="M68 65 Q80 55 82 48 Q86 52 82 60 Q78 66 72 68Z" fill="#8B5E3C"/>
+  <circle cx="30" cy="72" r="7" fill="#E8B84B" stroke="#c8956c" stroke-width="1.5"/>
+  <path d="M30 63 Q32 60 34 62" stroke="#5B8C3E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>
         <div>
-          <div style="font-size:15px;font-weight:700" id="chip-greeting"style="color:#3B6D11">היי! צ׳יפ כאן!</div>
+          <div style="font-size:15px;font-weight:700" id="chip-greeting">היי! צ׳יפ כאן!</div>
           <div style="font-size:13px;opacity:.85" id="chip-sub">מוכן/ה להתחיל?</div>
         </div>
       </div>
-      <button onclick="goToToday()" style="background:#5B8C3E;border:none;border-radius:var(--radius-sm);padding:12px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;width:100%;font-family:inherit"" id="today-btn">פתח/י את פעילות היום ➜</button>
+      <button onclick="goToToday()" style="background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.4);border-radius:var(--radius-sm);padding:12px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;width:100%;font-family:inherit" id="today-btn">פתח/י את פעילות היום ➜</button>
     </div>
     <div class="card">
       <div style="font-size:15px;font-weight:800;margin-bottom:4px">המסע שלי 🗺️</div>
@@ -302,7 +345,7 @@ input[type=text]:focus{outline:none;border-color:var(--primary)}
       <div class="streak-row">
         <div style="font-size:30px;font-weight:800;color:var(--orange)" id="streak-num">0</div>
         <div><div style="font-size:13px;font-weight:700;color:var(--orange)">ימים רצופים 🔥</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:2px">כל יום שמתרגלים – אוספים בלוטים וזוכים בתגים!</div></div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">כל יום שעושים – הבלוטים מתרבים!</div></div>
       </div>
     </div>
     <div class="card">
@@ -395,7 +438,7 @@ input[type=text]:focus{outline:none;border-color:var(--primary)}
         <div style="background:var(--primary-light);border-radius:var(--radius-sm);padding:12px;margin-bottom:10px">
           <div style="font-size:12px;font-weight:800;color:var(--primary);margin-bottom:6px">הממשק מחולק כך שבכל יום יופיע לכם:</div>
           <p style="font-size:13px;margin-bottom:6px"><strong>הסבר להורה</strong> – הרציונל לעיסוק בתחום הספציפי לאותו יום.</p>
-          <p style="font-size:13px;margin-bottom:6px"><strong>המשימה שלנו להיום</strong> – החלק שבו צ׳יפ הסנאי מסביר מה קורה לו. נסו להפוך את החלק הזה לחוויתי. התרגול קצר ופשוט והוא בסיס לשיחה – גם אם הילד טועה תמיד אפשר לנסות שוב. מומלץ לזהות האם יש מסוגלות לביצוע עצמאי של הפעולה ובמידה ולא- מה סוג התיווך ההורי אליו הילד\ה זקוק\ה כעת. זכרו כי ההתנסות היא המפתח להצלחה.</p>
+          <p style="font-size:13px;margin-bottom:6px"><strong>המשימה שלנו להיום</strong> – החלק שבו צ׳יפ הסנאי מסביר מה קורה לו. נסו להפוך את החלק הזה לחוויתי. התרגול קצר ופשוט והוא בסיס לשיחה – גם אם הילד טועה תמיד אפשר לנסות שוב. זכרו כי ההתנסות היא המפתח להצלחה.</p>
           <p style="font-size:13px;margin-bottom:6px"><strong>משימת עולם אמיתי</strong> – החלק שבו אתם מוזמנים לצאת מהממשק ולתרגל בחיים האמיתיים.</p>
           <p style="font-size:13px;margin-bottom:0"><strong>שיח הורה ילד</strong> – שאלה מכווינה לשיחה עם הילד. מומלץ להעשיר עם דוגמאות משלכם ולעודד את הילדים על הרעיונות שלהם.</p>
         </div>
@@ -404,10 +447,7 @@ input[type=text]:focus{outline:none;border-color:var(--primary)}
     </div>
     <div class="card">
       <div style="font-size:15px;font-weight:800;margin-bottom:14px">📝 שאלות ופידבק</div>
-      <div style="font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.5">הממשק פותח באהבה עבור עברי, האחיין שלי, שעתיד לעלות השנה לכיתה א'.
-אם גם הילד\ה שלך התנסו, אשמח לשמוע מכם\ן:)
-
-דנה.</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.5">נשמח לשמוע מכם! מלאו את הטופס ונחזור אליכם בהקדם.</div>
       <div style="border-radius:var(--radius-sm);overflow:hidden;border:1px solid #d4e4c8">
         <iframe id="feedback-iframe"
           src="https://docs.google.com/forms/d/e/1FAIpQLSeGO4wkXzBczfPJCiJx2LHmIudUdbHShgEagjPjdyGpb6-klQ/viewform?embedded=true"
@@ -482,7 +522,7 @@ const DAYS=[
 // W1
 {goal:"להכיר את המסע",
  parent:"היום מתחילים! הציגו את התוכנית כחוויה ופרס, לא מטלה. שבו יחד, הסבירו שבכל יום יש משימה קצרה, ובסוף 30 ימים מגיעים לכיתה א׳ מוכנים ובטוחים.",
- chip:"היי! אני צ׳יפ הסנאי! גם אני עולה לכיתה א׳ ביער בקרוב ואני ממש מתרגש! מה הדבר שאתה/את הכי מצפה לו?",
+ chip:"היי! אני צ׳יפ הסנאי! גם אני הולך לכיתה א׳ של היערות בקרוב ואני ממש מתרגש! מה הדבר שאתה/את הכי מצפה לו?",
  activity:{type:"choice",
   question:"מה הדבר שאתה/את הכי מצפה לו בכיתה א׳?",
   options:["חברים חדשים 👫","ללמוד לקרוא 📖","ארוחת עשר בהפסקה 🥪","להיות גדול/ה 🌟"],
@@ -493,7 +533,7 @@ const DAYS=[
  reward:"50 בלוטים + תג 'יוצאים לדרך' 🌟"},
 
 {goal:"לדעת מה ללבוש",
- parent:"כחלק מפיתוח עצמאות עודדו התנסות עצמאית- בהתאם למזג האוויר ומערכת הלימוד. במידה ויש קושי – שלבו הכוונה לאיך לבצע, לא לעשות במקומו/ה.",
+ parent:"בבית הספר הילד/ה יצטרך/תצטרך להתלבש לבד אחרי שיעור ספורט. חשוב שידע/תדע לבחור את הביגוד המתאים למזג האוויר ולפעילות. תנו זמן ואל תסגרו כפתורים במקומו/ה.",
  chip:"אני סנאי ואני יודע הכל על להתלבש נכון לפי מזג האוויר! בואו נבדוק שגם אתה/את יודע/ת!",
  activity:{type:"svgmatch",
   instruction:"שתי שאלות קצרות – בחר/י את התשובה הנכונה!",
@@ -512,7 +552,7 @@ const DAYS=[
  reward:"20 בלוטים + תג 'אלוף/ת הלבוש' 👕"},
 
 {goal:"ימין ושמאל בנעליים",
- parent:"בלבול בין ימין לשמאל בנעליים נפוץ מאוד בגיל הזה. אם יש קושי ניתן להדביק מדבקת חצי-חצי (לב, חיה, מכונית) בתוך שתי הנעליים – כשהחצאים מתחברים, הנעליים נכונות!",
+ parent:"הבחנה בין ימין לשמאל בנעליים נפוצה מאוד בגיל הזה. אם יש קושי ניתן להדביק מדבקת חצי-חצי (לב, חיה, מכונית) בתוך שתי הנעליים – כשהחצאים מתחברים, הנעליים נכונות!",
  chip:"פעם הגעתי לכיתה עם שתי הנעליים לאותו כיוון... כולם צחקו! עכשיו אני יודע את הסוד. בואו נתאמן ימין ושמאל ביחד!",
  activity:{type:"svgmatch",
   instruction:"בכל שאלה – איזה זוג מתחבר יחד?",
@@ -550,15 +590,15 @@ const DAYS=[
  reward:"20 בלוטים + תג 'נקי/ה ומסודר/ת' 🧼"},
 
 {goal:"לשמור על החפצים שלי",
- parent:"תופעת איבוד הציוד בכיתה א׳ שכיחה. הדרכת הילד/ה לסמן ולזהות חפציו/ה תסייע בצמצום עוגמת נפש ובפיתוח קשב לסביבה.",
- chip:"השבוע אבד לי בלוט מיוחד... הייתי עצוב כל היום! אחר כך הבנתי: אם הייתי מסמן אותו בשמי – הייתי מוצא אותו! מה היית עושה?",
+ parent:"תופעת אובדן הציוד בכיתה א׳ עצומה. לימוד הילד/ה לסמן ולזהות חפציו/ה מונע עוגמת נפש ומפתח קשב לסביבה.",
+ chip:"השבוע אבד לי בלוט מיוחד... הייתי עצוב כל היום! אחר כך הבנתי: אם הייתי מסמן אותו בשמי – הייתי מוצא אותו! מה היית/י עושה/ת?",
  activity:{type:"choice",
   question:"מצאת/י עפרון על הרצפה בכיתה. מה עושים?",
   options:["שומר/ת אותו לעצמי 😏","מחזיר/ה למורה 🙋","משאיר/ה על הרצפה 🤷","זורק/ת לפח 🗑️"],
   correct:1,
   feedback:["אופס! אם זה של מישהו אחר – הוא/היא יהיה/תהיה עצוב/ה. כדאי להחזיר למורה!","כל הכבוד! זה בדיוק מה שצ׳יפ היה עושה! המורה תדאג שיחזור לבעלים.","אם מישהו/י אחר/ת יצטרך/תצטרך אותו – לא יוכל/תוכל למצוא אותו שם.","הוא עדיין עשוי להיות שלם! כדאי קודם לבדוק עם המורה."]},
  real:"לסמן שמך על 3 חפצים אישיים עם טוש/מדבקה.",
- convo:"שאלו: 'מה נעשה אם שכחת את בקבוק המים בחצר? איפה נחפש?'",
+ convo:"שאלו: 'מה נעשה אם שכחת/י את בקבוק המים בחצר? איפה נחפש?'",
  reward:"20 בלוטים + תג 'שומר/ת החפצים' 🛡️"},
 
 // W2
@@ -629,9 +669,9 @@ const DAYS=[
  convo:"שאלו: 'עכשיו כשאתה/את יודע/ת – תגיד/י לי, איך אפשר לדעת שמישהו מקשיב בכיתה?'",
  reward:"25 בלוטים + תג 'אוזני קשב' 👂"},
 
-{goal:"לשבת ישר",
+{goal:"לשבת ישר וחזק",
  parent:"יציבות גו חלשה מובילה לעייפות מהירה ולקושי בריכוז ובכתיבה. תרגול תנוחות סטטיות מחזק שרירים מייצבים.",
- chip:"פעם ישבתי על ענף הרבה זמן ונפלתי כי לא שמרתי שיווי משקל! מאז אני מתרגל ישיבה זקפה. בואו נבדוק את הישיבה שלך!",
+ chip:"פעם ישבתי על ענף כל כך זמן ונפלתי כי לא שמרתי שיווי משקל! מאז אני מתרגל לשבת חזק. בואו נבדוק את הישיבה שלך!",
  activity:{type:"checklist",
   instruction:"בדוק/י את הגוף שלך עכשיו – כל פריט שנכון סמן/י:",
   items:["הגב שלי נוגע בגב הכיסא ✓","שתי הרגליים על הרצפה ✓","הידיים על השולחן (לא מתחת) ✓","הראש ישר – לא נשען על היד ✓","אני לא 'נמרח' על השולחן ✓"]},
@@ -644,7 +684,7 @@ const DAYS=[
  chip:"צ׳יפ נבהל מרעש חזק ביער! הלב שלי דפק מהר... אבל ידעתי מה לעשות. מה לדעתך יעזור לצ׳יפ להירגע?",
  activity:{type:"choice",
   question:"צ'יפ נבהל מרעש חזק. מה יעזור לו להירגע הכי מהר?",
-  options:["לצעוק בחזרה 😤","לברוח מהר מאוד 🏃","לנשום עמוק – בלון בבטן 🎈","לאכול הרבה בלוטים 🌰"],
+  options:["לצעוק בחזרה 😤","לברוח מהיר מאוד 🏃","לנשום עמוק – בלון בבטן 🎈","לאכול הרבה בלוטים 🌰"],
   correct:2,
   feedback:["לצעוק גורם לגוף להיות עוד יותר מעורר... הלב דופק עוד יותר חזק!","לברוח אולי עוזר לפעמים, אבל יש פתרון טוב יותר שתמיד עובד!","בדיוק! נשימה עמוקה – שואפים לאט וממלאים את הבטן, נושפים לאט. מנסים?","בלוטים טעימים, אבל הם לא עוזרים לגוף להירגע... נשימה עדיפה!"]},
  real:"לתרגל שאיפה ונשיפה: לדמיין שמריחים ריח של פרח נעים (שואפים לאט דרך האף) ואז נושפים לאט כאילו ממלאים בלון (דרך הפה). 3 פעמים ביחד.",
@@ -652,7 +692,7 @@ const DAYS=[
  reward:"30 בלוטים + תג 'רוח רגיעה' 🎈"},
 
 {goal:"לסרוק עם העיניים",
- parent:"סריקה חזותית היא מיומנת חיונית להעתקה מהלוח ולמעקב אחר שורות בספר. חשוב לתרגל קריאה מימין לשמאל – הכיוון בעברית.",
+ parent:"סריקה חזותית מיומנת חיונית להעתקה מהלוח ולמעקב אחר שורות בספר. חשוב לתרגל קריאה מימין לשמאל – הכיוון בעברית.",
  chip:"הסנאים הכי טובים בעולם במציאת בלוטים מוסתרים! יש לנו עיניים שסורקות כל עץ מימין לשמאל. בואו נתאמן את העיניים שלך!",
  activity:{type:"checklist",
   instruction:"ביחד עם ההורה – הביאו עיתון או קטע קריאה כלשהו:",
@@ -669,7 +709,7 @@ const DAYS=[
   options:["להתפרץ ולרוץ בכיתה 🏃","לעשות 10 קפיצות כוכב מהירות לפני שמתיישבים ⭐","לשכוח מהאנרגיה ולשבת בכוח 😤","לשאול לצאת לשחק 🙋"],
   correct:1,
   feedback:["לרוץ בכיתה יגרום לצרות... ויש דרך טובה יותר!","בדיוק! לפרוק אנרגיה מהר לפני הישיבה – זה עובד! גם צ׳יפ עושה ככה!","לשבת בכוח כשיש אנרגיה קשה מאוד ולא עוזר לריכוז.","פריקת אנרגיה מהירה בעצמך עדיפה – לא צריך לצאת!"]},
- real:"לתרגל: 10 קפיצות כוכב או נשימה עמוקה או פעילות שקטה.",
+ real:"לתרגל: 10 קפיצות כוכב → נשימה עמוקה → פעילות שקטה.",
  convo:"שאלו: 'מה אתה/את עושה כשיש לך יותר מדי אנרגיה ואתה/את חייב/ת לשבת?'",
  reward:"30 בלוטים + תג 'אלוף/ת הוויסות' ⚡"},
 
@@ -685,13 +725,13 @@ const DAYS=[
  reward:"25 בלוטים + תג 'אצבעות קסם' ✏️"},
 
 {goal:"מספריים בצורה נכונה",
- parent:"גזירה ברצף היא פעולה מורכבת. הקפידו: האגודל של יד גוזרת תמיד כלפי מעלה. יד עזר מכוונת את הדף.",
+ parent:"גזירה היא פעולה דו-צדדית מורכבת. הקפידו: האגודל של יד גוזרת תמיד כלפי מעלה. יד עזר מכוונת את הדף.",
  chip:"ניסיתי לגזור עלים לקן שלי והחזקתי מספריים הפוך... עשיתי חורים עגולים במקום חיתוכים ישרים! בואו נלמד ביחד!",
  activity:{type:"order",
   instruction:"סדר/י את שלבי הגזירה הנכונה:",
   items:["מחזיק/ה מספריים עם אגודל למעלה ✂️","יד עזר מחזיקה את הדף מהצד השני 🤚","מגיע/ה לתחילת הקו ✏️","גוזר/ת לאורך הקו בתנועות אחידות ✂️","מניח/ה מספריים בצד בסיום 🔒"],
   correct:[0,1,2,3,4]},
- real:"לגזור דף לאורך קו ישר, זיגזג וקו מעוקל.",
+ real:"לגזור דף לאורך קו ישר, זיגזג ועיגול.",
  convo:"שאלו: 'מה היד השנייה עושה כשגוזרים? למה היא חשובה?'",
  reward:"25 בלוטים + תג 'אשף/ת הגזירה' ✂️"},
 
@@ -746,7 +786,7 @@ const DAYS=[
 // W5
 {goal:"להפסיד בכבוד",
  parent:"למידת היכולת להפסיד בכבוד ולברך את המנצח היא אבן דרך קריטית לחברות מקובלת בכיתה א׳.",
- chip:"הפסדתי במרוץ האלונים הגדול ביער... וכעסתי מאוד. אבל אחר כך הבנתי: להפסיד בכבוד זה מיומנות חשובה! מה צ׳יפ יגיד לחבר שניצח?",
+ chip:"הפסדתי במרוץ האלונים הגדול ביער... הרגשתי כועס. אבל אחר כך הבנתי: איך להפסיד בכבוד זה מיומנות חשובה! מה צ׳יפ יגיד לחבר שניצח?",
  activity:{type:"choice",
   question:"צ׳יפ הפסיד במשחק. מה הכי נכון לומר לחבר שניצח?",
   options:["'אתה רמאי! אני לא משחק איתך!' 😠","'התבאסתי שלא ניצחתי אבל כל הכבוד שניצחת, מחר נשחק שוב!' 😊","לסגור פנים ולא לדבר 😤","לבכות הרבה 😢"],
@@ -816,12 +856,12 @@ const DAYS=[
 
 {goal:"ארוחת עשר עצמאית",
  parent:"הורים רבים מופתעים שהילד/ה חזר/ה עם קופסת אוכל מלאה – כי לא הצליח/ה לפתוח אותה! תרגלו 'על יבש' עם קופסה אמיתית.",
- chip:"פעם לא יכולתי לפתוח את הבקבוק שלי והייתי צמא כל ההפסקה... מאז אני מתרגל! בואו נסדר ביחד את ארוחת העשר המושלמת!",
+ chip:"פעם לא יכולתי לפתוח את הבקבוק שלי וצמאתי כל ההפסקה... מאז אני מתרגל! בואו נסדר ביחד את ארוחת העשר המושלמת!",
  activity:{type:"checklist",
   instruction:"סמן/י את שלבי ארוחת העשר הנכונה:",
   items:["פתחתי את הקופסה לבד (גם אם קשה!) 📦","אכלתי מעל המפית – לא על השולחן 🧻","שתיתי מים מהבקבוק שפתחתי לבד 💧","אכלתי בזמן הפסקה – ולא בזמן שיעור 🕐","סגרתי וסידרתי הכל חזרה לתיק 🎒"]},
  real:"ארוחת ערב בקופסת האוכל – לפתוח ולאכול לבד.",
- convo:"שאלו: 'מה נעשה אם הקופסה קשה מדי לפתיחה? ממי נבקש עזרה?'",
+ convo:"שאלו: 'מה נעשה אם הקופסה קשה מדי? למי נבקש עזרה?'",
  reward:"25 בלוטים + תג 'אלוף/ת המפית' 🍱"},
 
 {goal:"חוקי בית הספר",
@@ -833,7 +873,7 @@ const DAYS=[
    {stmt:"לרוץ במסדרון",correct:false},
    {stmt:"להרים יד לפני שמדברים בכיתה",correct:true},
    {stmt:"לדבר כשהמורה מסבירה",correct:false},
-   {stmt:"לחכות בתור לברזייה",correct:true},
+   {stmt:"לחכות בתור לשתייה",correct:true},
    {stmt:"לטפס על שולחנות",correct:false},
    {stmt:"לבקש עזרה כשלא מבינים",correct:true}
   ]},
@@ -846,14 +886,14 @@ const DAYS=[
  chip:"היום אנחנו עושים סימולציה! אני הולך להיות תלמיד צ׳יפ, ואתה/את תהיה/י המורה שלי. קודם – בדוק/י שאתה/את מוכן/ה!",
  activity:{type:"checklist",
   instruction:"סמן/י שיעור מתחיל – האם אתה/את מוכן/ה?",
-  items:["ישבתי בכיסא בישיבה נכונה ✓","הוצאתי מחברת ועיפרון ✓","הכנתי את כל הגוף להקשבה ✓","התיק מסודר מתחת לשולחן ✓","אני מחכה/ה שהמורה תתחיל ✓"]},
+  items:["ישבתי בכיסא בישיבה נכונה ✓","הוצאתי מחברת ועיפרון ✓","הכנתי לשמוע בכל הגוף ✓","התיק מסודר מתחת לשולחן ✓","אני מחכה/ה שהמורה תתחיל ✓"]},
  real:"סימולציית שיעור מלאה של 10 דקות עם הורה כמורה.",
  convo:"שאלו: 'וואו! ישבת/י כמו תלמיד/ה אמיתי/ת! איך הרגשת?'",
  reward:"50 בלוטים + תג 'תלמיד/ה מצטיין/ת' 🌠"},
 
 {goal:"מסיבת סיום המסע!",
  parent:"הגענו! הפכו את היום הזה לחגיגה משפחתית אמיתית. הילד/ה עבר/ה תהליך מדהים. הראו לו/ה כמה אתם גאים.",
- chip:"ואאאאו!!! 30 ימים!!! עשיתם את זה!!! אני, צ׳יפ, הכי גאה בכם מכל הסנאים ביער! ספרו לי – מה הדבר שאת/ה הכי גאה/ה בו מכל המסע?",
+ chip:"ואאאאו!!! 30 ימים!!! עשיתם את זה!!! אני, צ׳יפ, הכי גאה בכם מכל הסנאים ביער! ספרו לי – מה הדבר שהכי גאה/ה בו מהמסע?",
  activity:{type:"text",
   instruction:"כתוב/י לצ׳יפ: מה הדבר שהכי גאה/ה בו מהמסע?",
   placeholder:"למשל: הצלחתי להתלבש לבד כל בוקר...",
@@ -932,9 +972,40 @@ function selectGender(gv){
 function doRegister(){
   const cn=g('child-name').value.trim();
   if(!cn){g('child-name').focus();showToast('נא להזין שם ילד/ה');return;}
-  S.childName=cn;S.parentName=g('parent-name').value.trim()||'הורה';
+  S.childName=cn;
+  S.parentName=g('parent-name').value.trim()||'הורה';
+  S.parentEmail=g('parent-email').value.trim()||'';
   g('avatar-sub').textContent=S.gender==='girl'?`בני את הגיבורה שלך, ${cn}`:`בנה את הגיבור שלך, ${cn}`;
+  // שליחה ל-Formspree אם יש מייל והסכמה
+  if(S.parentEmail&&g('email-consent')&&g('email-consent').checked){
+    fetch('https://formspree.io/f/xgobklya',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({name:S.parentName,email:S.parentEmail,message:'הרשמה למסע לכיתה א׳'})
+    }).catch(()=>{});
+  }
   saveS();refreshPreview();goScreen('screen-avatar');
+}
+
+function showPrivacy(){
+  const overlay=document.createElement('div');
+  overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:600;display:flex;align-items:flex-end;justify-content:center';
+  overlay.innerHTML=`<div style="background:#fff;border-radius:20px 20px 0 0;padding:24px;width:100%;max-width:480px;max-height:80vh;overflow-y:auto;direction:rtl">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <h3 style="font-size:17px;font-weight:800;color:var(--text)">🔐 מדיניות פרטיות</h3>
+      <button onclick="this.closest('[style*=fixed]').remove()" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted)">✕</button>
+    </div>
+    <div style="font-size:13px;line-height:1.8;color:var(--text)">
+      <p style="margin-bottom:10px"><strong>איזה מידע אנחנו אוספים?</strong><br>שם ההורה, כתובת המייל, ושם הילד/ה – רק אם בחרת לשתף אותם.</p>
+      <p style="margin-bottom:10px"><strong>למה אנחנו אוספים?</strong><br>כדי לשלוח לך עדכונים, טיפים ותכנים הקשורים להכנה לכיתה א׳.</p>
+      <p style="margin-bottom:10px"><strong>האם המידע מועבר לצד שלישי?</strong><br>לא. המידע לא נמכר ולא מועבר לאף גורם חיצוני.</p>
+      <p style="margin-bottom:10px"><strong>שמירת נתונים</strong><br>נתוני השימוש (התקדמות, ימים שהושלמו) נשמרים רק במכשיר שלך ולא על שרתים שלנו.</p>
+      <p style="margin-bottom:10px"><strong>הסרה מרשימת תפוצה</strong><br>בכל עת תוכל/י לבקש הסרה בפנייה דרך טופס הפידבק באזור ההורה.</p>
+      <p style="color:var(--muted)">עודכן לאחרונה: יוני 2026</p>
+    </div>
+  </div>`;
+  overlay.onclick=e=>{if(e.target===overlay)overlay.remove();};
+  document.body.appendChild(overlay);
 }
 function finalizeAvatar(){saveS();goScreen('screen-home');showToast(`ברוכ/ה הבאה ${S.childName}! 🐿️`);trackEvent('register','new_user');}
 
@@ -1034,10 +1105,27 @@ function renderDay(dayNum){
 
   // Activity
   const actBox=document.createElement('div');actBox.className='activity-box';
-  actBox.innerHTML=`<div class="activity-header">🐿️ המשימה שלנו היום</div>`;
+  actBox.innerHTML=`<div class="activity-header"><svg width="18" height="20" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;margin-left:6px"><path d="M33 48 Q31 33 50 30 Q69 33 67 48" fill="#c8956c"/><path d="M31 44 Q24 28 20 26 Q18 33 24 40Z" fill="#D4855A"/><path d="M69 44 Q76 28 80 26 Q82 33 76 40Z" fill="#D4855A"/><ellipse cx="50" cy="58" rx="19" ry="20" fill="#E8A87C"/><circle cx="40" cy="53" r="7" fill="#fff"/><circle cx="60" cy="53" r="7" fill="#fff"/><circle cx="40.5" cy="54" r="4.5" fill="#2d1f14"/><circle cx="60.5" cy="54" r="4.5" fill="#2d1f14"/><path d="M50 78 Q33 83 29 97 Q61 102 71 97 Q67 83 50 78Z" fill="#8B5E3C"/></svg> המשימה שלנו היום</div>`;
   const inner=document.createElement('div');inner.className='activity-inner';
   const cb=document.createElement('div');cb.className='chip-bubble';
-  cb.innerHTML=`<span style="font-size:28px;flex-shrink:0">🐿️</span><div class="chip-say">${adapt(d.chip)}</div>`;
+  cb.innerHTML=`<svg width="28" height="32" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+  <path d="M33 48 Q31 33 50 30 Q69 33 67 48" fill="#c8956c"/>
+  <path d="M31 44 Q24 28 20 26 Q18 33 24 40 Q26 42 29 44Z" fill="#D4855A"/>
+  <path d="M69 44 Q76 28 80 26 Q82 33 76 40 Q74 42 71 44Z" fill="#D4855A"/>
+  <ellipse cx="50" cy="58" rx="19" ry="20" fill="#E8A87C"/>
+  <ellipse cx="50" cy="65" rx="13" ry="11" fill="#F5C09A"/>
+  <circle cx="40" cy="53" r="7" fill="#fff"/>
+  <circle cx="60" cy="53" r="7" fill="#fff"/>
+  <circle cx="40.5" cy="54" r="4.5" fill="#2d1f14"/>
+  <circle cx="60.5" cy="54" r="4.5" fill="#2d1f14"/>
+  <circle cx="41.5" cy="52.5" r="1.6" fill="#fff"/>
+  <circle cx="61.5" cy="52.5" r="1.6" fill="#fff"/>
+  <ellipse cx="50" cy="67" rx="5" ry="3" fill="#c47b6e"/>
+  <path d="M43 72 Q50 77 57 72" stroke="#c47b6e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M50 78 Q33 83 29 97 Q39 102 50 103 Q61 102 71 97 Q67 83 50 78Z" fill="#8B5E3C"/>
+  <path d="M50 78 Q44 86 50 92 Q56 86 50 78Z" fill="#E8A87C"/>
+  <circle cx="30" cy="72" r="6" fill="#E8B84B" stroke="#c8956c" stroke-width="1.2"/>
+</svg><div class="chip-say">${adapt(d.chip)}</div>`;
   inner.appendChild(cb);
   buildActivity(inner,d.activity,dayNum,actDone);
   actBox.appendChild(inner);dc.appendChild(actBox);
@@ -1426,20 +1514,6 @@ function buildSvgMatch(container,act,dayNum,done){
         fb.className='feedback-box show '+(i===r.correct?'correct':'wrong');
         if(i===r.correct){
           setTimeout(()=>{roundIdx++;showRound();},1400);
-        } else {
-          const retryBtn=document.createElement('button');
-          retryBtn.style.cssText='background:var(--primary);color:#fff;border:none;border-radius:var(--radius-sm);padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:10px;width:100%';
-          retryBtn.textContent='נסה/י שוב 🔄';
-          retryBtn.onclick=()=>{
-            opts.querySelectorAll('.choice-opt').forEach(b=>{b.disabled=false;b.classList.remove('wrong','correct');});
-            fb.className='feedback-box';retryBtn.remove();
-          };
-          rdiv.appendChild(retryBtn);
-          const skipBtn=document.createElement('button');
-          skipBtn.style.cssText='background:none;color:var(--muted);border:none;font-size:12px;cursor:pointer;font-family:inherit;margin-top:4px;width:100%;text-decoration:underline';
-          skipBtn.textContent='המשך לשאלה הבאה ←';
-          skipBtn.onclick=()=>{roundIdx++;showRound();};
-          rdiv.appendChild(skipBtn);
         }
       };
       opts.appendChild(btn);
@@ -1457,6 +1531,7 @@ function buildSvgMatch(container,act,dayNum,done){
 
   container.appendChild(wrap);
 }
+
 /* ══ PRINT TAG ══ */
 function printFinishTag(){
   const name=S.childName||'';
@@ -1486,6 +1561,28 @@ ${tagHTML}
 </body></html>`);
   w.document.close();
 }
+
+/* ══ PRIVACY ══ */
+function showPrivacy(){
+  const overlay=document.createElement('div');
+  overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:600;display:flex;align-items:flex-end;justify-content:center';
+  overlay.innerHTML=`<div style="background:#fff;border-radius:20px 20px 0 0;padding:24px;width:100%;max-width:480px;max-height:80vh;overflow-y:auto;direction:rtl">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <h3 style="font-size:17px;font-weight:800">🔐 מדיניות פרטיות</h3>
+      <button onclick="this.closest('[style*=fixed]').remove()" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted)">✕</button>
+    </div>
+    <div style="font-size:13px;line-height:1.8">
+      <p style="margin-bottom:10px"><strong>איזה מידע אנחנו אוספים?</strong><br>שם ההורה, כתובת המייל – רק אם בחרת לשתף.</p>
+      <p style="margin-bottom:10px"><strong>למה אנחנו אוספים?</strong><br>כדי לשלוח עדכונים, טיפים ותכנים הקשורים להכנה לכיתה א׳.</p>
+      <p style="margin-bottom:10px"><strong>האם המידע מועבר לצד שלישי?</strong><br>לא. המידע לא נמכר ולא מועבר לאף גורם חיצוני.</p>
+      <p style="margin-bottom:10px"><strong>שמירת נתונים</strong><br>נתוני השימוש נשמרים רק במכשיר שלך.</p>
+      <p style="color:var(--muted)">עודכן לאחרונה: יוני 2026</p>
+    </div>
+  </div>\`;
+  overlay.onclick=e=>{if(e.target===overlay)overlay.remove();};
+  document.body.appendChild(overlay);
+}
+
 /* ══ QA MODE ══ */
 // סרגל QA – מוצג רק כשה-URL מכיל ?qa=1
 function initQAMode(){
