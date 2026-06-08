@@ -1502,6 +1502,26 @@ ${tagHTML}
 </body></html>`);
   w.document.close();
 }
+  /* ══ PRIVACY ══ */
+function showPrivacy(){
+  const overlay=document.createElement('div');
+  overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:600;display:flex;align-items:flex-end;justify-content:center';
+  overlay.innerHTML=`<div style="background:#fff;border-radius:20px 20px 0 0;padding:24px;width:100%;max-width:480px;max-height:80vh;overflow-y:auto;direction:rtl">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <h3 style="font-size:17px;font-weight:800">🔐 מדיניות פרטיות</h3>
+      <button onclick="this.closest('[style*=fixed]').remove()" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted)">✕</button>
+    </div>
+    <div style="font-size:13px;line-height:1.8">
+      <p style="margin-bottom:10px"><strong>איזה מידע אנחנו אוספים?</strong><br>שם ההורה, כתובת המייל – רק אם בחרת לשתף.</p>
+      <p style="margin-bottom:10px"><strong>למה אנחנו אוספים?</strong><br>כדי לשלוח עדכונים, טיפים ותכנים הקשורים להכנה לכיתה א׳.</p>
+      <p style="margin-bottom:10px"><strong>האם המידע מועבר לצד שלישי?</strong><br>לא. המידע לא נמכר ולא מועבר לאף גורם חיצוני.</p>
+      <p style="margin-bottom:10px"><strong>שמירת נתונים</strong><br>נתוני השימוש נשמרים רק במכשיר שלך.</p>
+      <p style="color:var(--muted)">עודכן לאחרונה: יוני 2026</p>
+    </div>
+  </div>`;
+  overlay.onclick=e=>{if(e.target===overlay)overlay.remove();};
+  document.body.appendChild(overlay);
+}
 /* ══ QA MODE ══ */
 // סרגל QA – מוצג רק כשה-URL מכיל ?qa=1
 function initQAMode(){
