@@ -209,6 +209,11 @@ input[type=text]:focus{outline:none;border-color:var(--primary)}
         <button class="gender-btn" id="btn-girl" onclick="selectGender('girl')">👧<span>בת</span></button>
       </div>
     </div>
+    <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;background:var(--primary-light);border-radius:var(--radius-sm);padding:12px">
+  <input type="checkbox" id="email-consent" style="width:18px;height:18px;margin-top:1px;flex-shrink:0;cursor:pointer;accent-color:var(--primary)"/>
+  <span style="font-size:13px;color:var(--text);line-height:1.5">אני מאשר/ת קבלת עדכונים, תכנים וטיפים על כיתה א׳ למייל שלי</span>
+</label>
+<div style="font-size:11px;color:var(--muted);text-align:center;line-height:1.6">המידע שלך מאובטח ולא יועבר לצד שלישי.<br>הרשמה = הסכמה ל<span style="color:var(--primary);cursor:pointer;text-decoration:underline" onclick="showPrivacy()">מדיניות הפרטיות</span></div>
     <button class="btn btn-primary" onclick="doRegister()">הבא: בניית הגיבור/ת שלך ✨</button>
     <div style="font-size:11px;color:var(--muted);text-align:center">הפרטים נשמרים רק במכשיר שלך</div>
   </div>
