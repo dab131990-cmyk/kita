@@ -938,9 +938,19 @@ function selectGender(gv){
 function doRegister(){
   const cn=g('child-name').value.trim();
   if(!cn){g('child-name').focus();showToast('נא להזין שם ילד/ה');return;}
-  S.childName=cn;S.parentName=g('parent-name').value.trim()||'הורה';
+  S.childName=cn;
+  S.parentName=g('parent-name').value.trim()||'הורה';
+  S.parentEmail=g('parent-email').value.trim()||'';
   g('avatar-sub').textContent=S.gender==='girl'?`בני את הגיבורה שלך, ${cn}`:`בנה את הגיבור שלך, ${cn}`;
+  if(S.parentEmail&&g('email-consent')&&g('email-consent').checked){
+    fetch('https://formspree.io/f/xgobklya',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({name:S.parentName,email:S.parentEmail,message:'הרשמה למסע לכיתה א׳'})
+    }).catch(()=>{});
+  }
   saveS();refreshPreview();goScreen('screen-avatar');
+}
 }
 function finalizeAvatar(){saveS();goScreen('screen-home');showToast(`ברוכ/ה הבאה ${S.childName}! 🐿️`);trackEvent('register','new_user');}
 
