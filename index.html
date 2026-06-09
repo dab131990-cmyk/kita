@@ -1,15 +1,22 @@
+
+raw
+Screen onboard fixed · HTML
 <!-- ONBOARD -->
 <div id="screen-onboard" class="screen active">
   <style>
     #screen-onboard {
-      min-height: auto;
-      padding-bottom: 0;
+      min-height: 100vh;
+      padding-bottom: 0 !important;
+      flex: 1;
+      display: flex !important;
+      flex-direction: column;
     }
     #screen-onboard .ob-wrap {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
+      flex: 1;
       min-height: 100vh;
     }
     #screen-onboard .ob-banner {
@@ -84,7 +91,9 @@
       z-index: 2;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
     }
+    #screen-onboard .ob-top-text { display: flex; flex-direction: column; }
     #screen-onboard .ob-title {
       font-size: 25px;
       font-weight: 800;
@@ -100,8 +109,9 @@
     #screen-onboard .ob-sub2 {
       font-size: 13px;
       color: #99b880;
-      margin-bottom: 20px;
+      margin-bottom: 0;
     }
+    #screen-onboard .ob-middle { padding: 20px 0 0; }
     #screen-onboard .ob-trail {
       display: flex;
       align-items: center;
@@ -122,8 +132,9 @@
     #screen-onboard .ob-trail-label {
       font-size: 11px;
       color: #99b880;
-      margin-bottom: 22px;
+      margin-bottom: 0;
     }
+    #screen-onboard .ob-bottom { display: flex; flex-direction: column; }
     #screen-onboard .ob-cta {
       width: 100%;
       background: linear-gradient(135deg, #6CC84A 0%, #50B030 100%);
@@ -155,7 +166,7 @@
       line-height: 1.5;
     }
   </style>
-
+ 
   <div class="ob-wrap">
     <!-- Banner -->
     <div class="ob-banner">
@@ -165,42 +176,49 @@
       <span class="ob-chip">🐿️</span>
       <div class="ob-bubble">!שלום, אני צ׳יפ</div>
     </div>
-
+ 
     <!-- Content -->
     <div class="ob-content">
-      <div class="ob-title">המסע לכיתה א׳</div>
-      <div class="ob-sub">הצטרפו לצ׳יפ הסנאי החביב ל-30 ימי הכנה</div>
-      <div class="ob-sub2">אתם בוחרים מתי וכמה, גם לא ברצף!</div>
-
-      <!-- Trail -->
-      <div class="ob-trail">
-        <div class="ob-trail-dot"  style="width:12px;height:12px;background:#27AE60;"></div>
-        <div class="ob-trail-line" style="background:#C0DD97;"></div>
-        <div class="ob-trail-dot"  style="width:12px;height:12px;background:#27AE60;"></div>
-        <div class="ob-trail-line" style="background:#C0DD97;"></div>
-        <div class="ob-trail-dot"  style="width:12px;height:12px;background:#27AE60;"></div>
-        <div class="ob-trail-line" style="background:#C0DD97;"></div>
-        <div class="ob-trail-dot"  style="width:16px;height:16px;background:#5B8C3E;box-shadow:0 0 0 3px #EAF3DE;"></div>
-        <div class="ob-trail-line" style="background:#E8B84B;"></div>
-        <div class="ob-trail-dot"  style="width:12px;height:12px;background:#E8B84B;opacity:.7;"></div>
-        <div class="ob-trail-line" style="background:#d4e4c8;"></div>
-        <div class="ob-trail-dot"  style="width:12px;height:12px;background:#d4e4c8;"></div>
-        <div class="ob-trail-line" style="background:#d4e4c8;"></div>
-        <div class="ob-trail-dot"  style="width:12px;height:12px;background:#d4e4c8;"></div>
-        <div class="ob-trail-line" style="background:#d4e4c8;"></div>
-        <div class="ob-trail-grad">🎓</div>
+ 
+      <div class="ob-top-text">
+        <div class="ob-title">המסע לכיתה א׳</div>
+        <div class="ob-sub">הצטרפו לצ׳יפ הסנאי החביב ל-30 ימי הכנה</div>
+        <div class="ob-sub2">אתם בוחרים מתי וכמה, גם לא ברצף!</div>
       </div>
-      <div class="ob-trail-label">30 תחנות · 6 עולמות</div>
-
-      <!-- CTA -->
-      <button class="ob-cta" onclick="goScreen('screen-register')">
-        <span>🎉</span>
-        <span>בואו נתחיל!</span>
-      </button>
-
-      <div class="ob-footer">פותח על ידי דנה ברינדט, מרפאה בעיסוק – כל הזכויות שמורות</div>
+ 
+      <div class="ob-middle">
+        <div class="ob-trail">
+          <div class="ob-trail-dot"  style="width:12px;height:12px;background:#27AE60;"></div>
+          <div class="ob-trail-line" style="background:#C0DD97;"></div>
+          <div class="ob-trail-dot"  style="width:12px;height:12px;background:#27AE60;"></div>
+          <div class="ob-trail-line" style="background:#C0DD97;"></div>
+          <div class="ob-trail-dot"  style="width:12px;height:12px;background:#27AE60;"></div>
+          <div class="ob-trail-line" style="background:#C0DD97;"></div>
+          <div class="ob-trail-dot"  style="width:16px;height:16px;background:#5B8C3E;box-shadow:0 0 0 3px #EAF3DE;"></div>
+          <div class="ob-trail-line" style="background:#E8B84B;"></div>
+          <div class="ob-trail-dot"  style="width:12px;height:12px;background:#E8B84B;opacity:.7;"></div>
+          <div class="ob-trail-line" style="background:#d4e4c8;"></div>
+          <div class="ob-trail-dot"  style="width:12px;height:12px;background:#d4e4c8;"></div>
+          <div class="ob-trail-line" style="background:#d4e4c8;"></div>
+          <div class="ob-trail-dot"  style="width:12px;height:12px;background:#d4e4c8;"></div>
+          <div class="ob-trail-line" style="background:#d4e4c8;"></div>
+          <div class="ob-trail-grad">🎓</div>
+        </div>
+        <div class="ob-trail-label">30 תחנות · 6 עולמות</div>
+      </div>
+ 
+      <div class="ob-bottom">
+        <button class="ob-cta" onclick="goScreen('screen-register')">
+          <span>🎉</span>
+          <span>בואו נתחיל!</span>
+        </button>
+        <div class="ob-footer">פותח על ידי דנה ברינדט, מרפאה בעיסוק – כל הזכויות שמורות</div>
+      </div>
+ 
     </div>
   </div>
+</div>
+ 
 </div>
 <!-- ONBOARD -->
 <div id="screen-onboard" class="screen active">
