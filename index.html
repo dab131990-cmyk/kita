@@ -1,207 +1,169 @@
-<!-- ONBOARD -->
-<div id="screen-onboard" class="screen active">
-  <style>
-    #screen-onboard {
-      min-height: auto;
-      padding-bottom: 0;
-    }
-    #screen-onboard .ob-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      min-height: 100vh;
-    }
-    #screen-onboard .ob-banner {
-      width: 100%;
-      background: linear-gradient(160deg, #C8EDA0 0%, #B2E080 100%);
-      border-radius: 0 0 50% 50% / 0 0 44px 44px;
-      padding: 36px 20px 52px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-    #screen-onboard .ob-banner::before {
-      content: '';
-      position: absolute;
-      top: -40px; right: -40px;
-      width: 160px; height: 160px;
-      background: radial-gradient(circle, #FFF9C4 30%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-    #screen-onboard .ob-sparkle {
-      position: absolute;
-      font-size: 18px;
-      animation: obFloatUp 5s ease-in-out infinite;
-      opacity: .8;
-    }
-    #screen-onboard .ob-s1 { top: 12%; left: 12%; animation-delay: 0s; }
-    #screen-onboard .ob-s2 { top: 10%; left: 50%; animation-delay: 1.5s; }
-    #screen-onboard .ob-s3 { top: 20%; right: 15%; animation-delay: .8s; }
-    @keyframes obFloatUp {
-      0%,100% { transform: translateY(0) rotate(0deg); }
-      50%      { transform: translateY(-12px) rotate(10deg); }
-    }
-    #screen-onboard .ob-chip {
-      font-size: 88px;
-      line-height: 1;
-      display: block;
-      filter: drop-shadow(0 4px 10px rgba(80,140,30,.2));
-      animation: obChipJump 2.2s ease-in-out infinite;
-    }
-    @keyframes obChipJump {
-      0%,100% { transform: translateY(0) rotate(-2deg); }
-      40%     { transform: translateY(-14px) rotate(3deg); }
-      70%     { transform: translateY(-5px) rotate(-1deg); }
-    }
-    #screen-onboard .ob-bubble {
-      background: #fff;
-      border-radius: 20px 20px 20px 6px;
-      padding: 9px 18px;
-      font-size: 15px;
-      font-weight: 700;
-      color: #3a7a1a;
-      display: inline-block;
-      margin-top: 8px;
-      box-shadow: 0 3px 10px rgba(80,140,30,.15);
-      animation: obWobble 3s ease-in-out infinite;
-    }
-    @keyframes obWobble {
-      0%,100% { transform: rotate(-1deg); }
-      50%     { transform: rotate(1deg); }
-    }
-    #screen-onboard .ob-content {
-      background: #FAFFF6;
-      border-radius: 30px 30px 0 0;
-      width: 100%;
-      padding: 24px 22px 28px;
-      flex: 1;
-      box-shadow: 0 -6px 24px rgba(80,140,30,.1);
-      margin-top: -18px;
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-    }
-    #screen-onboard .ob-title {
-      font-size: 25px;
-      font-weight: 800;
-      color: #2a6010;
-      margin-bottom: 6px;
-    }
-    #screen-onboard .ob-sub {
-      font-size: 14px;
-      color: #5a8a3a;
-      line-height: 1.65;
-      margin-bottom: 4px;
-    }
-    #screen-onboard .ob-sub2 {
-      font-size: 13px;
-      color: #99b880;
-      margin-bottom: 20px;
-    }
-    #screen-onboard .ob-trail {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      margin-bottom: 6px;
-    }
-    #screen-onboard .ob-trail-dot  { border-radius: 50%; }
-    #screen-onboard .ob-trail-line { height: 2px; width: 12px; }
-    #screen-onboard .ob-trail-grad {
-      width: 18px; height: 18px;
-      background: #E8B84B;
-      border: 2px solid #c8a030;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 10px;
-    }
-    #screen-onboard .ob-trail-label {
-      font-size: 11px;
-      color: #99b880;
-      margin-bottom: 22px;
-    }
-    #screen-onboard .ob-cta {
-      width: 100%;
-      background: linear-gradient(135deg, #6CC84A 0%, #50B030 100%);
-      color: #fff;
-      border: none;
-      border-radius: 22px;
-      padding: 17px 20px;
-      font-size: 19px;
-      font-weight: 800;
-      font-family: 'Varela Round', 'Segoe UI', Arial, sans-serif;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 6px 20px rgba(80,180,50,.35);
-      transition: transform .15s;
-      margin-bottom: 14px;
-      animation: obBtnPulse 2.5s ease-in-out infinite;
-    }
-    @keyframes obBtnPulse {
-      0%,100% { box-shadow: 0 6px 20px rgba(80,180,50,.35), 0 0 0 0   rgba(80,180,50,.2); }
-      60%     { box-shadow: 0 6px 20px rgba(80,180,50,.35), 0 0 0 10px rgba(80,180,50,.0); }
-    }
-    #screen-onboard .ob-cta:active { transform: scale(.97); }
-    #screen-onboard .ob-footer {
-      font-size: 11px;
-      color: #b8ccaa;
-      line-height: 1.5;
-    }
-  </style>
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<!-- Google Analytics - להחליף G-QG8H2CQHTV בקוד שלך -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QG8H2CQHTV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QG8H2CQHTV');
 
-  <div class="ob-wrap">
-    <!-- Banner -->
-    <div class="ob-banner">
-      <span class="ob-sparkle ob-s1">✨</span>
-      <span class="ob-sparkle ob-s2">⭐</span>
-      <span class="ob-sparkle ob-s3">✨</span>
-      <span class="ob-chip">🐿️</span>
-      <div class="ob-bubble">!שלום, אני צ׳יפ</div>
-    </div>
+  // אירועים מותאמים - ספירת רישום והשלמות
+  function trackEvent(action, label){
+    if(typeof gtag !== 'undefined'){
+      gtag('event', action, {event_category:'masav', event_label:label});
+    }
+  }
+</script>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#5B8C3E">
+<title>המסע לכיתה א׳ עם צ׳יפ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#5B8C3E;--primary-light:#EAF3DE;
+  --acorn:#8B5E3C;--acorn-light:#F5EBE0;
+  --green:#27AE60;--green-light:#E8F8EF;
+  --purple:#7C4DBC;--purple-light:#EDE7F6;
+  --orange:#E67E22;--orange-light:#FEF0E0;
+  --teal:#16A085;--teal-light:#E0F5F1;
+  --blue:#2D6BE4;--blue-light:#D6E8FF;
+  --pink:#E84393;--pink-light:#FFE8F4;
+  --red:#E74C3C;--red-light:#FDEDEC;
+  --bg:#F4F7F2;--card:#fff;--text:#1A2E1A;--muted:#5a6b5a;
+  --radius:16px;--radius-sm:10px;
+}
+html,body{height:100%;font-family:'Varela Round','Segoe UI',Arial,sans-serif;direction:rtl;background:var(--bg);color:var(--text);overflow-x:hidden}
+.screen{display:none;flex-direction:column;min-height:100vh;padding-bottom:84px}
+#screen-onboard{min-height:auto;padding-bottom:0}
+.screen.active{display:flex}
+.top-bar{background:var(--primary);color:#fff;padding:16px 20px 22px;position:sticky;top:0;z-index:10;position:relative}
+.top-bar::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:16px;background:var(--bg);border-radius:50% 50% 0 0 / 16px 16px 0 0}.top-bar h1{font-size:18px;font-weight:700}
+.top-bar .sub{font-size:13px;opacity:.8;margin-top:2px}
+.acorn-bar{display:flex;align-items:center;gap:6px;margin-top:8px}
+.acorn-count{background:var(--acorn);color:#fff;font-weight:700;font-size:14px;padding:4px 12px;border-radius:20px}
+.content{padding:20px;flex:1;display:flex;flex-direction:column;gap:16px}
+.card{background:var(--card);border-radius:var(--radius);padding:20px;border:1px solid #d4e4c8}
+.btn{border:none;border-radius:var(--radius-sm);padding:14px 20px;font-size:16px;font-weight:700;cursor:pointer;width:100%;font-family:inherit;transition:.15s}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-green{background:var(--green);color:#fff}
+input[type=text]{border:2px solid #c8dab8;border-radius:var(--radius-sm);padding:12px 16px;font-size:15px;font-family:inherit;direction:rtl;width:100%;background:#fff;color:var(--text)}
+input[type=text]:focus{outline:none;border-color:var(--primary)}
+.input-wrap{display:flex;flex-direction:column;gap:6px}
+.input-wrap label{font-size:13px;font-weight:700;color:var(--muted)}
+.gender-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gender-btn{border:2px solid #c8dab8;border-radius:var(--radius-sm);padding:16px 10px;font-size:28px;cursor:pointer;background:#fff;display:flex;flex-direction:column;align-items:center;gap:5px;transition:.15s;font-family:inherit;width:100%}
+.gender-btn span{font-size:13px;font-weight:700;color:var(--muted)}
+.gender-btn.selected{border-color:var(--primary);background:var(--primary-light)}
+.gender-btn.selected span{color:var(--primary)}
+.opt-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.opt-btn{border:2px solid #c8dab8;border-radius:var(--radius-sm);padding:10px 6px;font-size:11px;font-weight:700;cursor:pointer;background:#fff;text-align:center;transition:.15s;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:4px}
+.opt-btn .ob-icon{font-size:22px}
+.opt-btn.selected{border-color:var(--primary);background:var(--primary-light);color:var(--primary)}
+.avatar-wrap{display:flex;justify-content:center;padding:10px 0}
+/* day card */
+.day-card{border-radius:var(--radius);overflow:hidden;border:1px solid #d4e4c8}
+.day-header{padding:14px 16px;color:#fff}
+.day-num-text{font-size:20px;font-weight:800}
+.day-goal-text{font-size:13px;opacity:.9;margin-top:3px}
+.section-block{padding:14px 16px;border-bottom:1px solid #eef3ea}
+.section-block:last-child{border-bottom:none}
+.section-label{font-size:12px;font-weight:800;margin-bottom:8px;letter-spacing:.3px}
+.parent-box{background:var(--primary-light);border-radius:var(--radius-sm);padding:13px 14px;border-right:4px solid var(--primary)}
+.parent-box-label{font-size:11px;font-weight:800;color:var(--primary);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.parent-box-text{font-size:13px;line-height:1.65}
+.convo-bubble{background:var(--acorn-light);border-radius:var(--radius-sm);padding:12px 14px;border-right:4px solid var(--acorn);font-size:14px;line-height:1.65}
+.reward-bar{background:var(--acorn);padding:10px 16px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#fff}
+/* chip bubble */
+.chip-bubble{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px}
+.chip-say{background:#fff;border-radius:0 12px 12px 12px;padding:10px 12px;font-size:13px;line-height:1.6;flex:1;border:1px solid #c8b8e8}
+/* ACTIVITY BOX */
+.activity-box{border-radius:var(--radius-sm);overflow:hidden;border:1.5px solid #c8b8e8;margin-bottom:0}
+.activity-header{background:var(--purple);padding:10px 14px;color:#fff;font-size:13px;font-weight:800}
+.activity-inner{background:#F8F4FF;padding:16px}
+/* CHOICE activity */
+.choice-opts{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.choice-opt{border:2px solid #c8b8e8;border-radius:var(--radius-sm);padding:12px 14px;font-size:14px;cursor:pointer;background:#fff;text-align:right;font-family:inherit;transition:.15s;width:100%}
+.choice-opt:active{opacity:.85}
+.choice-opt.correct{border-color:var(--green);background:var(--green-light);color:#1a5c2a}
+.choice-opt.wrong{border-color:var(--red);background:var(--red-light);color:#7b1a1a}
+.feedback-box{margin-top:12px;border-radius:var(--radius-sm);padding:12px 14px;font-size:13px;line-height:1.6;display:none}
+.feedback-box.show{display:block}
+.feedback-box.correct{background:var(--green-light);border:1px solid var(--green);color:#1a5c2a}
+.feedback-box.wrong{background:var(--red-light);border:1px solid var(--red);color:#7b1a1a}
+/* DRAG/ORDER activity */
+.drag-area{display:flex;flex-direction:column;gap:8px}
+.drag-target-row{display:flex;flex-wrap:wrap;gap:8px;min-height:52px;border:2px dashed #c8b8e8;border-radius:var(--radius-sm);padding:8px;background:#fff;margin-bottom:10px}
+.drag-items{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.drag-item{border:2px solid #c8b8e8;border-radius:var(--radius-sm);padding:8px 12px;font-size:13px;font-weight:700;cursor:pointer;background:#fff;user-select:none;display:flex;align-items:center;gap:6px;transition:.15s}
+.drag-item:active{opacity:.7;transform:scale(.97)}
+.drag-item.placed{background:var(--primary-light);border-color:var(--primary);color:var(--primary)}
+.drag-item.correct-placed{background:var(--green-light);border-color:var(--green);color:#1a5c2a}
+.drag-item.wrong-placed{background:var(--red-light);border-color:var(--red);color:#7b1a1a}
+.drag-slot{border:2px dashed #c8b8e8;border-radius:var(--radius-sm);padding:8px 10px;min-width:60px;min-height:44px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);background:#fff;position:relative}
+.drag-slot.filled{border-style:solid;border-color:var(--primary);background:var(--primary-light)}
+.drag-slot.correct{border-color:var(--green);background:var(--green-light)}
+.drag-slot.wrong{border-color:var(--red);background:var(--red-light)}
+/* CHECKLIST activity */
+.check-items{display:flex;flex-direction:column;gap:8px}
+.check-item{display:flex;align-items:center;gap:12px;background:#fff;border:2px solid #c8b8e8;border-radius:var(--radius-sm);padding:12px;cursor:pointer;transition:.15s}
+.check-item.checked{background:var(--green-light);border-color:var(--green)}
+.check-box{width:26px;height:26px;border-radius:6px;border:2px solid #c8b8e8;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;background:#fff;transition:.15s}
+.check-item.checked .check-box{background:var(--green);border-color:var(--green);color:#fff}
+.check-label{font-size:14px;font-weight:600}
+.check-item.checked .check-label{text-decoration:line-through;opacity:.6}
+/* TEXT INPUT activity */
+.text-activity input{border:2px solid #c8b8e8;border-radius:var(--radius-sm);padding:12px;font-size:15px;width:100%;font-family:inherit;direction:rtl;margin-bottom:10px}
+.text-activity input:focus{outline:none;border-color:var(--purple)}
+.chip-response{display:none;background:#fff;border-radius:0 12px 12px 12px;padding:10px 12px;font-size:13px;line-height:1.6;border:1px solid #c8b8e8;margin-top:8px}
+.chip-response.show{display:block}
+/* TRUE/FALSE activity */
+.tf-items{display:flex;flex-direction:column;gap:8px}
+.tf-item{border:2px solid #c8b8e8;border-radius:var(--radius-sm);padding:12px;background:#fff}
+.tf-stmt{font-size:13px;font-weight:600;margin-bottom:8px}
+.tf-btns{display:flex;gap:8px}
+.tf-btn{flex:1;border:2px solid #c8b8e8;border-radius:var(--radius-sm);padding:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;background:#fff;transition:.15s}
+.tf-btn.selected-correct{background:var(--green-light);border-color:var(--green);color:#1a5c2a}
+.tf-btn.selected-wrong{background:var(--red-light);border-color:var(--red);color:#7b1a1a}
+/* check button */
+.check-btn{background:var(--purple);color:#fff;border:none;border-radius:var(--radius-sm);padding:12px;font-size:15px;font-weight:700;cursor:pointer;width:100%;font-family:inherit;margin-top:12px;display:none}
+.check-btn.visible{display:block}
+/* complete */
+.complete-btn{background:var(--green);color:#fff;border:none;border-radius:var(--radius-sm);padding:15px;font-size:16px;font-weight:700;cursor:pointer;width:100%;font-family:inherit}
+/* nav */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #d4e4c8;display:flex;z-index:20;padding-bottom:env(safe-area-inset-bottom)}
+.nav-btn{flex:1;padding:10px 0;border:none;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:700;color:var(--muted);font-family:inherit}
+.nav-btn.active{color:var(--primary)}
+.nav-icon{font-size:20px}
+/* stickers */
+.sticker-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sticker{border-radius:var(--radius-sm);padding:12px 6px;text-align:center;border:2px solid #d4e4c8;background:var(--bg)}
+.sticker.earned{border-color:var(--acorn);background:var(--acorn-light)}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:700}
+/* trail */
+.streak-row{display:flex;align-items:center;gap:12px;background:var(--orange-light);border-radius:var(--radius-sm);padding:12px 16px}
+/* toast */
+.toast{position:fixed;top:76px;left:50%;transform:translateX(-50%);background:#1A2E1A;color:#fff;padding:11px 22px;border-radius:30px;font-size:14px;font-weight:700;z-index:200;opacity:0;transition:.3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1}
+.coin-anim{position:fixed;top:50%;left:50%;font-size:44px;font-weight:800;z-index:300;pointer-events:none;opacity:0;color:var(--acorn)}
+@keyframes coinPop{0%{opacity:1;transform:translate(-50%,-50%) scale(.5)}55%{opacity:1;transform:translate(-50%,-80%) scale(1.3)}100%{opacity:0;transform:translate(-50%,-130%) scale(1)}}
+.coin-anim.show{animation:coinPop .75s ease forwards}@keyframes chipBounce{0%{transform:scale(0) rotate(-10deg);opacity:0}60%{transform:scale(1.2) rotate(5deg);opacity:1}80%{transform:scale(.9) rotate(-3deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+.chip-bounce{animation:chipBounce .6s ease forwards}
+/* parent gate */
+.gate-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;display:flex;align-items:center;justify-content:center}
+.gate-box{background:#fff;border-radius:var(--radius);padding:24px;margin:20px;width:100%;max-width:340px}
+.gate-q{background:var(--primary-light);border-radius:var(--radius-sm);padding:12px;font-size:15px;font-weight:700;color:var(--primary);text-align:center;margin-bottom:12px}
+.gate-input{border:2px solid #c8dab8;border-radius:var(--radius-sm);padding:12px;font-size:16px;text-align:center;width:100%;font-family:inherit;margin-bottom:10px}
+.gate-input:focus{outline:none;border-color:var(--primary)}
+.gate-err{color:#c0392b;font-size:13px;text-align:center;margin-bottom:8px;display:none}
+</style>
+</head>
+<body>
 
-    <!-- Content -->
-    <div class="ob-content">
-      <div class="ob-title">המסע לכיתה א׳</div>
-      <div class="ob-sub">הצטרפו לצ׳יפ הסנאי החביב ל-30 ימי הכנה</div>
-      <div class="ob-sub2">אתם בוחרים מתי וכמה, גם לא ברצף!</div>
-
-      <!-- Trail -->
-      <div class="ob-trail">
-        <div class="ob-trail-dot"  style="width:12px;height:12px;background:#27AE60;"></div>
-        <div class="ob-trail-line" style="background:#C0DD97;"></div>
-        <div class="ob-trail-dot"  style="width:12px;height:12px;background:#27AE60;"></div>
-        <div class="ob-trail-line" style="background:#C0DD97;"></div>
-        <div class="ob-trail-dot"  style="width:12px;height:12px;background:#27AE60;"></div>
-        <div class="ob-trail-line" style="background:#C0DD97;"></div>
-        <div class="ob-trail-dot"  style="width:16px;height:16px;background:#5B8C3E;box-shadow:0 0 0 3px #EAF3DE;"></div>
-        <div class="ob-trail-line" style="background:#E8B84B;"></div>
-        <div class="ob-trail-dot"  style="width:12px;height:12px;background:#E8B84B;opacity:.7;"></div>
-        <div class="ob-trail-line" style="background:#d4e4c8;"></div>
-        <div class="ob-trail-dot"  style="width:12px;height:12px;background:#d4e4c8;"></div>
-        <div class="ob-trail-line" style="background:#d4e4c8;"></div>
-        <div class="ob-trail-dot"  style="width:12px;height:12px;background:#d4e4c8;"></div>
-        <div class="ob-trail-line" style="background:#d4e4c8;"></div>
-        <div class="ob-trail-grad">🎓</div>
-      </div>
-      <div class="ob-trail-label">30 תחנות · 6 עולמות</div>
-
-      <!-- CTA -->
-      <button class="ob-cta" onclick="goScreen('screen-register')">
-        <span>🎉</span>
-        <span>בואו נתחיל!</span>
-      </button>
-
-      <div class="ob-footer">פותח על ידי דנה ברינדט, מרפאה בעיסוק – כל הזכויות שמורות</div>
-    </div>
-  </div>
-</div>
 <!-- ONBOARD -->
 <div id="screen-onboard" class="screen active">
   <div style="padding:36px 24px 20px;flex:1;display:flex;flex-direction:column;align-items:center;text-align:center">
