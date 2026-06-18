@@ -1697,17 +1697,6 @@ function buildText(container,act,dayNum,done){
   container.appendChild(wrap);
 }
 
-/* ══ COMPLETE ══ */
-function completeDay(dayNum){
-  if(S.completedDays.includes(dayNum))return;
-  S.completedDays.push(dayNum);
-  const pts=25;
-  S.acorns+=pts;S.streak++;
-  if(dayNum===S.currentDay&&dayNum<30)S.currentDay=dayNum+1;
-  saveS();showCoin(pts);
-  showToast(dayNum===30?`🎉 מזל טוב! השלמת את המסע!`:`+${pts} בלוטים! יום ${dayNum} הושלם!`);trackEvent(dayNum===30?'journey_complete':'day_complete','day_'+dayNum);
-  setTimeout(()=>renderDay(dayNum),800);
-}
 
 /* ══ ACHIEVEMENTS ══ */
 function renderAchievements(){
